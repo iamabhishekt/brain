@@ -1,94 +1,96 @@
 #!/usr/bin/env bash
 # ==============================================================================
-# setup-new-pc.sh — Workspace Brain Onboarding & Symlink Provisioner
+# setup-new-pc.sh — Multi-Machine Provisioner for Central Brain & Claude Code
 # ==============================================================================
-# Use this script when setting up a new PC or syncing brain to another machine.
-# Cloned path: <WORKSPACE_ROOT>/brain
-# Run: cd brain && bash scripts/setup-new-pc.sh
+# Run this script whenever setting up a new PC or secondary workstation:
+#   git clone https://github.com/iamabhishekt/brain.git ~/brain
+#   cd ~/brain && bash scripts/setup-new-pc.sh
 # ==============================================================================
 
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BRAIN_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
-WORKSPACE_ROOT="$(cd "${BRAIN_DIR}/.." && pwd)"
 
 echo "========================================================"
-echo " Workspace Brain Setup for New PC / Multi-Machine Sync"
+echo " 🧠 Setting up Universal Brain on New PC"
+echo " Brain Directory: ${BRAIN_DIR}"
 echo "========================================================"
-echo "Brain Directory:  ${BRAIN_DIR}"
-echo "Workspace Root:   ${WORKSPACE_ROOT}"
-echo "--------------------------------------------------------"
 
-# 1. Verify Prerequisites
-echo "[1/3] Checking prerequisites..."
-check_cmd() {
+# 1. Check prerequisites
+echo ""
+echo "[1/4] Checking tools & authentication..."
+check_tool() {
   if command -v "$1" >/dev/null 2>&1; then
-    echo "  ✓ $1 is installed ($($1 --version 2>&1 | head -n 1))"
+    echo "  ✓ $1 is installed"
   else
     echo "  ⚠ $1 is NOT installed. ($2)"
   fi
 }
 
-check_cmd "git" "Required for version control"
-check_cmd "node" "Required for JS tools & MCP servers"
-check_cmd "jq" "Required for Claudify safety hooks (apt install jq / brew install jq)"
-check_cmd "claude" "Claude Code CLI (curl -fsSL https://claude.ai/install.sh | bash)"
+check_tool "git" "Required for version control"
+check_tool "gh" "GitHub CLI (sudo apt install gh / brew install gh)"
+check_tool "node" "Node.js (https://nodejs.org)"
+check_tool "pnpm" "pnpm package manager (npm install -g pnpm)"
+check_tool "claude" "Claude Code CLI (curl -fsSL https://claude.ai/install.sh | bash)"
 
-# 2. Provision Discovery Symlinks in Workspace Root
-echo ""
-echo "[2/3] Provisioning discovery symlinks in workspace root..."
-
-declare -A SHIMS=(
-  ["AGENTS.md"]="brain/AGENTS.md"
-  ["CLAUDE.md"]="brain/CLAUDE.md"
-  ["CLAUDE.local.md"]="brain/CLAUDE.local.md"
-  ["GEMINI.md"]="brain/GEMINI.md"
-  [".claude"]="brain/.claude"
-  [".cursor"]="brain/.cursor"
-  [".trae"]="brain/.trae"
-  [".kilocode"]="brain/.kilocode"
-  [".dsh"]="brain/.dsh"
-  [".agents"]="brain/.agents"
-  [".codebuddy"]="brain/.codebuddy"
-  [".gemini"]="brain/.gemini"
-  [".codex"]="brain/.codex"
-  [".opencode"]="brain/.opencode"
-  [".qwen"]="brain/.qwen"
-  [".mcp.json"]="brain/.mcp.json"
-  ["documentation"]="brain/documentation"
-  ["skills-lock.json"]="brain/tool-config/skills-lock.json"
-  ["Daily Notes"]="brain/state/daily-notes"
-  ["Task Board.md"]="brain/state/task-board.md"
-  ["Scratchpad.md"]="brain/state/scratchpad.md"
-)
-
-for shim in "${!SHIMS[@]}"; do
-  target="${SHIMS[$shim]}"
-  link_path="${WORKSPACE_ROOT}/${shim}"
-  
-  if [ -L "${link_path}" ]; then
-    echo "  ✓ Symlink already exists: ${shim} -> $(readlink "${link_path}")"
-  elif [ -e "${link_path}" ]; then
-    echo "  ⚠ Existing file/directory found at ${shim}; skipping to avoid overwrite."
-  else
-    ln -s "${target}" "${link_path}"
-    echo "  + Created symlink: ${shim} -> ${target}"
-  fi
-done
-
-# 3. Claudify Hooks Permissions
-echo ""
-echo "[3/3] Setting execute permissions on hooks & scripts..."
-find "${BRAIN_DIR}/scripts" -type f -name "*.sh" -exec chmod +x {} + || true
-if [ -d "${BRAIN_DIR}/.claude/hooks" ]; then
-  find "${BRAIN_DIR}/.claude/hooks" -type f -exec chmod +x {} + || true
+# Check GitHub authentication
+if command -v gh >/dev/null 2>&1; then
+  echo ""
+  echo "Checking GitHub authentication status:"
+  gh auth status || echo "  ⚠ Run 'gh auth login' to authenticate with GitHub."
 fi
+
+# 2. Configure Global Git Push Hook & Hooks Directory
+echo ""
+echo "[2/4] Setting up global Git hook trigger..."
+HOOKS_DIR="$HOME/.config/git/hooks"
+mkdir -p "$HOOKS_DIR"
+
+chmod +x "${BRAIN_DIR}/scripts/on-git-push.sh"
+chmod +x "${BRAIN_DIR}/scripts/sync-brain.sh"
+chmod +x "${BRAIN_DIR}/scripts/"*.sh 2>/dev/null || true
+
+ln -sf "${BRAIN_DIR}/scripts/on-git-push.sh" "${HOOKS_DIR}/pre-push"
+git config --global core.hooksPath "${HOOKS_DIR}"
+echo "  ✓ Global pre-push hook linked to: ${HOOKS_DIR}/pre-push"
+echo "  ✓ core.hooksPath set to: ${HOOKS_DIR}"
+
+# 3. Configure Global Claude Code Symlinks
+echo ""
+echo "[3/4] Linking global Claude Code commands & memory..."
+CLAUDE_HOME="$HOME/.claude"
+mkdir -p "$CLAUDE_HOME"
+
+ln -sfn "${BRAIN_DIR}/.claude/commands" "${CLAUDE_HOME}/commands"
+ln -sfn "${BRAIN_DIR}/.claude/agents" "${CLAUDE_HOME}/agents"
+ln -sfn "${BRAIN_DIR}/CLAUDE.md" "${CLAUDE_HOME}/CLAUDE.md"
+
+echo "  ✓ ~/.claude/commands -> ${BRAIN_DIR}/.claude/commands"
+echo "  ✓ ~/.claude/agents   -> ${BRAIN_DIR}/.claude/agents"
+echo "  ✓ ~/.claude/CLAUDE.md -> ${BRAIN_DIR}/CLAUDE.md"
+
+# 4. Pull Latest Brain State
+echo ""
+echo "[4/4] Syncing latest brain state from GitHub..."
+git -C "${BRAIN_DIR}" pull --rebase origin main || true
+echo "  ✓ Brain is up to date."
 
 echo ""
 echo "========================================================"
-echo " Setup complete! Next steps:"
-echo " 1. Verify Task Board: cat '${WORKSPACE_ROOT}/Task Board.md'"
-echo " 2. Verify Claude Code: run 'claude' from '${WORKSPACE_ROOT}'"
-echo " 3. Verify Gemini/Antigravity: ensure GEMINI.md is loaded"
+echo " 🎉 New PC Setup Complete!"
+echo "========================================================"
+echo " Next Steps:"
+echo " 1. Clone your project:"
+echo "    git clone https://github.com/iamabhishekt/ecommerce-website.git"
+echo "    cd ecommerce-website"
+echo ""
+echo " 2. Install dependencies & run:"
+echo "    pnpm install"
+echo "    pnpm dev"
+echo ""
+echo " 3. Launch Claude Code in your project:"
+echo "    claude"
+echo "    Type /start to load daily notes and task board from ~/brain"
+echo "    Type /wrap-up at the end of the day to sync back to GitHub"
 echo "========================================================"
