@@ -16,7 +16,7 @@ Begin a working session. Load context, create today's daily note, review tasks.
 
 Pull any updates made from your other PC or sessions:
 ```bash
-bash brain/scripts/sync-brain.sh --quiet || true
+bash ~/brain/scripts/sync-brain.sh --quiet || true
 ```
 
 ### Step 1: Get today's date
@@ -28,8 +28,9 @@ date +"%m%d%y %H:%M %A"
 ### Step 2: Load memory (parallel reads)
 
 Read simultaneously:
-- `.claude/memory.md`
-- `.claude/knowledge-base.md`
+- `~/brain/.claude/memory.md`
+- `~/brain/.claude/knowledge-base.md`
+- Project context: If in a git repo, check `~/brain/projects/<repo-name>/PROJECT.md`
 
 These are your working context. Knowledge-base entries are mandatory constraints.
 
@@ -39,7 +40,7 @@ Confirm `~/.cursor/cli-config.json` still has `"attribution": { "attributeCommit
 
 ### Step 3: Create daily note
 
-Create `Daily Notes/MMDDYY.md` (if it doesn't exist):
+Create `~/brain/Daily Notes/MMDDYY.md` (if it doesn't exist):
 
 ```markdown
 # MMDDYY - Daily Work Log
@@ -59,7 +60,7 @@ Create `Daily Notes/MMDDYY.md` (if it doesn't exist):
 
 ### Step 4: Open task board
 
-Read `Task Board.md`. Scan for:
+Read `~/brain/Task Board.md`. Scan for:
 - Overdue items (anything from previous days still open)
 - Today's priorities
 - Blocked items

@@ -15,24 +15,24 @@ Mid-day context refresh. Process captured notes, update memory, health check.
 ### Step 1: Read current state (parallel)
 
 Read simultaneously:
-- `.claude/memory.md`
-- `Daily Notes/MMDDYY.md` (today's date)
-- `Scratchpad.md`
+- `~/brain/.claude/memory.md`
+- `~/brain/Daily Notes/MMDDYY.md` (today's date)
+- `~/brain/Scratchpad.md`
 
 ### Step 2: Process scratchpad
 
 For each item in Scratchpad:
-- Is it a task? → Move to Task Board
-- Is it a decision? → Add to Daily Note → Decisions
-- Is it a learning? → Nominate to `.claude/knowledge-nominations.md`
-- Is it a note? → Add to Daily Note → Notes
+- Is it a task? → Move to `~/brain/Task Board.md`
+- Is it a decision? → Add to `~/brain/Daily Notes/MMDDYY.md` → Decisions
+- Is it a learning? → Nominate to `~/brain/.claude/knowledge-nominations.md`
+- Is it a note? → Add to `~/brain/Daily Notes/MMDDYY.md` → Notes
 - Is it stale? → Delete
 
-Clear processed items from Scratchpad.
+Clear processed items from `~/brain/Scratchpad.md`.
 
 ### Step 3: Scan task board
 
-Read `Task Board.md`:
+Read `~/brain/Task Board.md`:
 - Move completed tasks from Today → Done
 - Flag any tasks that are blocked
 - Check if priorities have shifted
@@ -53,7 +53,7 @@ Ask yourself:
 
 ### Step 6: Update memory
 
-Edit `.claude/memory.md`:
+Edit `~/brain/.claude/memory.md`:
 - Update "Now" with current focus
 - Add/resolve items in "Open Threads"
 - Record any new decisions in "Recent Decisions"
@@ -61,7 +61,7 @@ Edit `.claude/memory.md`:
 
 ### Step 7: Review incident log
 
-Read `.claude/logs/incident-log.md` (if it exists). Look for:
+Read `~/brain/.claude/logs/incident-log.md` (if it exists). Look for:
 - Repeated failures (same error 3+ times)
 - Blocked commands that should be allowed (or vice versa)
 - Any CRITICAL severity events

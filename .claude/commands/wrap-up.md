@@ -16,10 +16,10 @@ End-of-day ritual. Externalize knowledge, clean up, prepare for tomorrow.
 ### Step 1: Read current state (parallel)
 
 Read simultaneously:
-- `.claude/memory.md`
-- `Daily Notes/MMDDYY.md` (today)
-- `Scratchpad.md`
-- `Task Board.md`
+- `~/brain/.claude/memory.md`
+- `~/brain/Daily Notes/MMDDYY.md` (today)
+- `~/brain/Scratchpad.md`
+- `~/brain/Task Board.md`
 
 ### Step 2: Process remaining scratchpad items
 
@@ -27,7 +27,7 @@ Same as /sync Step 2. Clear everything — scratchpad should be empty at end of 
 
 ### Step 3: Sync memory
 
-Edit `.claude/memory.md`:
+Edit `~/brain/.claude/memory.md`:
 - Update "Now" to reflect where things stand
 - Resolve completed Open Threads
 - Prune stale Recent Decisions (older than 1 week)
@@ -35,7 +35,7 @@ Edit `.claude/memory.md`:
 
 ### Step 4: Move completed tasks
 
-In `Task Board.md`:
+In `~/brain/Task Board.md`:
 - Move all completed tasks from Today → Done
 - Clear Done list if it's Friday
 - Move incomplete Today items to This Week or Backlog with a note on why
@@ -43,7 +43,7 @@ In `Task Board.md`:
 ### Step 5: Knowledge externalization
 
 Review today's work for learnings:
-- **User corrections**: Anything the user explicitly corrected → nominate to `.claude/knowledge-nominations.md`
+- **User corrections**: Anything the user explicitly corrected → nominate to `~/brain/.claude/knowledge-nominations.md`
 - **Empirical discoveries**: Things proven through testing → nominate
 - **Pattern observations**: Recurring patterns noticed → nominate
 - **Failure lessons**: Root cause of any resolved failures → nominate
@@ -55,7 +55,7 @@ Format: `- [MMDDYY] /wrap-up: [learning] | Evidence: [source]`
 Spawn the auditor agent to review today's work:
 
 ```
-Agent(auditor): Review today's work in Daily Notes/MMDDYY.md. Check:
+Agent(auditor): Review today's work in ~/brain/Daily Notes/MMDDYY.md. Check:
 1. Were all tasks completed or properly deferred?
 2. Were any knowledge-base rules violated?
 3. Are there any pending nominations to review?
@@ -64,16 +64,16 @@ Tier: T1 (quick scan). Report findings.
 
 ### Step 7: Review incident log
 
-Read `.claude/logs/incident-log.md`. Summarize any notable events.
+Read `~/brain/.claude/logs/incident-log.md`. Summarize any notable events.
 
 ### Step 8: Preview tomorrow
 
 Based on Task Board and Open Threads, suggest 1-3 priorities for tomorrow.
-Add them to Task Board → Today.
+Add them to `~/brain/Task Board.md` → Today.
 
 ### Step 9: Update daily note
 
-Add to `Daily Notes/MMDDYY.md` → End of Day Summary:
+Add to `~/brain/Daily Notes/MMDDYY.md` → End of Day Summary:
 - Key accomplishments
 - Decisions made
 - Open items carried forward
@@ -93,7 +93,7 @@ If any match: strip the trailer (`git filter-branch --msg-filter 'sed "/^Co-auth
 
 Sync all task, note, and memory updates to the private repository:
 ```bash
-bash brain/scripts/sync-brain.sh || true
+bash ~/brain/scripts/sync-brain.sh || true
 ```
 
 ### Step 11: Sign off
