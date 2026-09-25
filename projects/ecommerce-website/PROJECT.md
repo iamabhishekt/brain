@@ -1,14 +1,12 @@
-# Project: Ecommerce Website (Sattvora Enterprises)
+# Project: ecommerce-website
 
-- **Attached:** 2026-09-25
-- **Path:** `/home/abhishek/ecommerce-website`
-- **GitHub:** https://github.com/iamabhishekt/ecommerce-website (Private)
-- **Status:** Active Development
+- **Remote URL:** https://github.com/iamabhishekt/ecommerce-website.git
+- **Local Path:** /home/abhishek/ecommerce-website
+- **Tech Stack:** Node/JavaScript, React, Next.js, Vite, TypeScript, Tailwind CSS
+- **Last Active Branch:** main
+- **Last Commit:** 991c67b — "refactor: remove all agent and brain symlinks; keep repository 100% focused on product code"
+- **Last Push Timestamp:** 2026-09-25 17:31:25
+- **Status:** Active
 
-## Tech Stack
-- Frontend: React 19, Vite 8, Tailwind CSS v4, TypeScript 5.9
-- Architecture: Modular feature components (`components/storefront`, `components/cart`, `components/checkout`, `components/admin`)
-- State Management: `CartContext` & `ProductContext` with `useLocalStorage` persistence
-
-## Figma Source
-- [Ecommerce-Checkout-Flow-UI](https://www.figma.com/make/ScCZcknBGfeTRVzGJPuMLe/Ecommerce-Checkout-Flow-UI?fullscreen=1&t=uslEcmrcfLZVI8cx-1)
+## Overview
+Auto-tracked project informed by git-push trigger.
