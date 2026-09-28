@@ -1,9 +1,9 @@
 # Memory
 
 ## Now
-- Workspace pushed to GitHub: https://github.com/iamabhishekt/ecommerce-website (private repository).
-- All commits authored by `iamabhishekt <abhishekthakur.art@protonmail.com>`.
-- Fully modular React 19 storefront running live on `http://localhost:5173/`.
+- Legends site `https://reserve.legendslimousine.com` calls `https://legends.tripslink.com/JLimoApi` cross-site.
+- Session bearer fallback is pushed (`JLimoCore` `9be02db156`, `ReactJLimoWeb` `7f805798c`) and is not on live `JDK14-414`.
+- Edit save still fails with `Street # Required`. The local preservation edit is not in the tree.
 
 ## Project
 - **Name:** Sattvora Enterprises (Ecommerce Website)
@@ -16,9 +16,11 @@
 - Code quality: clean code, proper typing, test verification.
 
 ## Recent Decisions
-- Claudify OS installed into project.
-- Frontend established from Figma Make in `sattvora-frontend/`.
+- [092826] Legends CORS stays an allowlist. Custom domain is on `/**` only.
+- [092826] Cross-site login sends `Authorization: Bearer` from response headers because `SameSite=None` cookies can still be dropped when `sec-gpc: 1`.
+- Claudify OS installed into the Sattvora project. Frontend is in `sattvora-frontend/`.
 
 ## Open Threads
-- Backend architecture (database, order management, payment integration).
-- Refactoring `App.tsx` (modularizing into dedicated component files).
+- Redeploy JlimoApi and the website bundle, then confirm logged-in `tabJobsAction` uses Hazelcast.
+- Reapply pickup street-number preservation so edit save does not throw `Street # Required`.
+- Sattvora backend and `App.tsx` split are paused.
