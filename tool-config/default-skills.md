@@ -6,36 +6,53 @@ Last updated: 2026-10-03.
 Source of truth: `brain/.claude/skills/` (canonical), symlinked into
 `brain/.agents/skills/`, `brain/.kilocode/skills/`.
 
-## Always-on learning + engineering skills
+## Design principle: small default-on set
+
+Skills load at session start, so every default-on skill costs context on **every
+message**. The default-on set is therefore deliberately small — only the highest-value,
+broadly-useful learning skills. Everything else is installed and available but **opt-in**:
+say "load X" to bring it in for a session.
+
+## Always-on (9 skills, ~25 KB total)
 
 | Skill | Category | One-line |
 |---|---|---|
 | `vibe-wise-learn` | learning | Reasoning-first onboarding for new projects / unfamiliar repos |
 | `eli5` | learning | Explain anything to any audience |
-| `aas-explain-like-socrates` | learning | Socratic explanation |
-| `aas-tutorial-engineer` | learning | Turn a concept into a tutorial |
-| `aas-technical-tutorials` | learning | Technical tutorial authoring |
-| `aas-learn` | learning | Capture learnings into the knowledge base |
-| `aas-cc-skill-continuous-learning` | learning | Continuous learning discipline |
-| `aas-learning-career-development` | learning | Career-skill growth guidance |
-| `aas-javascript-mastery` | learning | Deepen JS/TS mastery |
-| `aas-crossframe-teach` | learning | Teach across frameworks |
-| `aas-kaizen` | learning | Continuous improvement of process and code shape |
-| `teach` | learning | Teach the user a new skill over sessions |
+| `aas-explain-like-socrates` | learning | Socratic explanation instead of a fact dump |
+| `aas-cc-skill-continuous-learning` | learning | Capture learnings into the knowledge base |
+| `karpathy-understanding-first` | learning | Outsource thinking, never understanding |
+| `karpathy-minimalism` | learning | 200 lines of pure code beats 50 npm packages |
+| `karpathy-llm-wiki` | learning | Let the LLM maintain your KB; you do the exploring |
 | `ponytail` | engineering | Write the least that works |
-| `caveman` | engineering | Talk concisely |
-| `improve-codebase-architecture` | engineering | Find structural deepening opportunities |
-| `code-review` | engineering | Two-axis review (Standards + Spec) |
-| `tdd` | engineering | Red-green-refactor |
-| `diagnosing-bugs` | engineering | Disciplined bug diagnosis loop |
-| `domain-modeling` | engineering | Build and sharpen the domain model |
-| `codebase-design` | engineering | Deep-module design vocabulary |
-| `grill-me` | engineering | Relentless interview to sharpen a plan |
-| `grill-with-docs` | engineering | Grill + build the domain model / ADRs |
-| `research` | engineering | Investigate against high-trust primary sources |
-| `prototype` | engineering | Throwaway prototype to sanity-check a model |
-| `handoff` | engineering | Compact a conversation into a handoff doc |
-| `wizard` | engineering | Generate an interactive bash wizard |
+| `caveman` | engineering | Talk concisely; drop throat-clearing |
+
+## Opt-in (installed, load on demand)
+
+The full Karpathy methodology set: `karpathy-methodology`,
+`karpathy-agentic-engineering`, `karpathy-llm-simulator`, `karpathy-autoresearch`,
+`karpathy-education-first`, `karpathy-meta-reflection`,
+`karpathy-system-prompt-learning`, `karpathy-output-evolution`,
+`karpathy-idea-files`, `karpathy-practice-environments`,
+`karpathy-supply-chain-hygiene`, `karpathy-vibe-to-agentic`.
+
+Plus: `improve-codebase-architecture`, `code-review`, `tdd`, `diagnosing-bugs`,
+`domain-modeling`, `codebase-design`, `grill-me`, `grill-with-docs`, `research`,
+`prototype`, `handoff`, `wizard`, `teach`, `aas-learn`, `aas-teach`,
+`aas-tutorial-engineer`, `aas-technical-tutorials`, `aas-learning-career-development`,
+`aas-crossframe-teach`, `aas-javascript-mastery`, `aas-kaizen`.
+
+## Memory persistence
+
+Learnings are written to `brain/.claude/knowledge-base.md` (auditor-gated) and
+per-project `brain/projects/<name>/memory.md` by the `aas-cc-skill-continuous-learning`
+and `karpathy-llm-wiki` skills. To keep memory small and durable:
+
+- `brain/.claude/memory.md` is capped at ~100 lines (Write only) — prune stale items.
+- `brain/.claude/knowledge-base.md` is capped at ~200 lines; every entry needs
+  `[Source:]` provenance and no TBD/TODO.
+- Run `/sync` mid-day to refresh memory and process the scratchpad.
+- Run `/wrap-up` at end of session to persist state.
 
 ## Turn off for a session
 

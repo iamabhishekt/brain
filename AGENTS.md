@@ -73,10 +73,47 @@ Every agent session runs with **learning mode on by default**. While doing proje
 
 ### Default-on skill set
 The canonical list of always-on skills lives at `brain/tool-config/default-skills.md`.
-It covers learning (vibe-wise, eli5, socratic/teaching, continuous-learning, kaizen),
-concise communication (caveman, ponytail), and core engineering discipline
-(code-review, tdd, diagnosing-bugs, domain-modeling, codebase-design, grill-me,
-research, prototype, handoff, wizard, improve-codebase-architecture).
+
+**Why this small set:** skills load at session start, so every default-on skill costs
+context on every message. The always-on set is deliberately *small* — the highest-value,
+broadly-useful learning skills only. Everything else (domain specialists, heavy guides,
+the full Karpathy methodology set) is installed and available, but **opt-in**: just name
+it and it loads for that session.
+
+**Always-on (lightweight, high value):**
+| Skill | What it does |
+|---|---|
+| `vibe-wise-learn` | Reasoning-first onboarding for new projects / unfamiliar repos |
+| `eli5` | Explain anything to any audience |
+| `aas-explain-like-socrates` | Socratic explanation instead of a fact dump |
+| `aas-cc-skill-continuous-learning` | Capture learnings into the knowledge base |
+| `karpathy-understanding-first` | Outsource thinking, never understanding |
+| `karpathy-minimalism` | 200 lines of pure code beats 50 npm packages |
+| `karpathy-llm-wiki` | Let the LLM maintain your knowledge base; you explore |
+| `ponytail` | Write the least that works |
+| `caveman` | Talk concisely; drop throat-clearing |
+
+**Opt-in (installed, load on demand):** the rest of the Karpathy methodology set
+(`karpathy-methodology`, `karpathy-agentic-engineering`, `karpathy-llm-simulator`,
+`karpathy-autoresearch`, `karpathy-education-first`, `karpathy-meta-reflection`,
+`karpathy-system-prompt-learning`, `karpathy-output-evolution`, `karpathy-idea-files`,
+`karpathy-practice-environments`, `karpathy-supply-chain-hygiene`,
+`karpathy-vibe-to-agentic`), plus `improve-codebase-architecture`, `code-review`, `tdd`,
+`diagnosing-bugs`, `domain-modeling`, `codebase-design`, `grill-me`, `grill-with-docs`,
+`research`, `prototype`, `handoff`, `wizard`, `teach`, and the remaining AAS learning
+skills. Say "load X" to bring one in for a session.
+
+### Karpathy learning strategy on X
+Andrej Karpathy's public tweets are pulled into the brain on demand:
+
+```bash
+export APIFY_TOKEN='apify_api_...'   # get one at https://apify.com/store/tokens (free tier)
+bash ~/brain/scripts/fetch-karpathy.sh 200
+```
+
+Output lands at `brain/documentation/karpathy-x-feed.jsonl` (one JSON row per tweet,
+deduped across runs). The distilled methodology is also installed as skills
+(`karpathy-methodology` + 14 sub-skills) — opt-in, load with "load karpathy-*".
 
 ### Turn it off
 Say "pause learning" or "learning off" to suspend it for a session; say "resume learning" to bring it back.
