@@ -37,7 +37,7 @@ if [[ "$REMOTE_URL" =~ "iamabhishekt" ]] || \
   IS_IAMABHISHEKT=true
 fi
 
-# If this is not an iamabhishekt repo (e.g. Limosys work repo), exit immediately
+# If this repo is not owned by iamabhishekt (e.g. a work repo on another account), exit immediately
 if [ "$IS_IAMABHISHEKT" = "false" ]; then
   exit 0
 fi

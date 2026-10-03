@@ -1,19 +1,24 @@
 # Task Board
 
 ## Today
-- [x] Installed Claudify OS and brain symlinks
-- [x] Initialized git with user iamabhishekt <abhishekthakur.art@protonmail.com>
-- [x] Phase 1: Foundation & State (utilities, useLocalStorage, CartContext, ProductContext)
-- [x] Phase 2: Storefront & Cart Components (Logo, MarqueeBar, ProductCard, ProductDetailModal, CartSidebar)
-- [x] Phase 3: Storefront View, Checkout Flow & Admin Panel (Storefront, CheckoutFlow, OrderConfirmation, AdminPanel, App.tsx)
-- [x] Created private GitHub repository and pushed to https://github.com/iamabhishekt/ecommerce-website
+- [x] Wired global pre-push hook (`~/.config/git/hooks/pre-push` → `on-git-push.sh`)
+- [x] Built master task index: `brain/scripts/master-index.sh` → `brain/projects/TASK-INDEX.md`
+- [x] Added vibe-wise to brain project tracking (PROJECT.md, task-board, memory, scratchpad)
+- [x] Installed skills: mattpocock (8 missing), ponytail (6), ELI5, vibe-wise-learn, AAS learning subset (10), Karpathy methodology (15)
+- [x] Learning-by-default added to AGENTS.md; default-on trimmed 26 → 9 skills
+- [x] Rewrote brain README (single → multi-project) + default-skills manifest
+- [x] Scraped Karpathy X feed (100 tweets) via Apify; keychain-backed refresh script
+- [x] Demo: 75-line C Redis client (real RESP, SET/GET verified against local redis)
 
 ## In Progress
-- [ ] Next feature phase: Backend API, database, or payment gateway integration
+- [ ] C/Redis learning — extend mini-redis (nil replies, TDD loop)
 
 ## Done
-- [x] Refactored sattvora-frontend from 2,157-line monolith into production-grade modular architecture (React 19 + TypeScript + Tailwind v4)
+- [x] Brain multi-project tracking operational; 100 projects indexed
+- [x] 165 skills installed across all agents; default-on set slimmed
+- [x] Karpathy learning source wired (skills + live X feed)
+- [x] Brain synced to GitHub (commit 9163bdb)
 
-## Done
-- [x] Installed Claudify OS and brain symlinks
-- [x] Initialized git with user iamabhishekt <abhishekthakur.art@protonmail.com>
+## Backlog
+- [ ] ecommerce-website: backend API / database / payment gateway integration
+- [ ] Refresh Karpathy feed periodically: `bash ~/brain/scripts/fetch-karpathy.sh 200`

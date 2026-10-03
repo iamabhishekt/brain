@@ -1,19 +1,24 @@
 # Task Board
 
 ## Today
-- Redeploy JlimoApi past `JDK14-414` and the website bundle so `reserve.legendslimousine.com` keeps the login session.
-- Re-apply the pickup street-number preservation in `BookingService.applyAddress`. The edit was not in the tree at wrap-up.
-- After deploy, confirm a logged-in `tabJobsAction` logs `USING HC` with a `PLINK_` or `WEB_` id.
+- [x] Wired global pre-push hook (`~/.config/git/hooks/pre-push` → `on-git-push.sh`)
+- [x] Built master task index: `brain/scripts/master-index.sh` → `brain/projects/TASK-INDEX.md`
+- [x] Added vibe-wise to brain project tracking (PROJECT.md, task-board, memory, scratchpad)
+- [x] Installed skills: mattpocock (8 missing), ponytail (6), ELI5, vibe-wise-learn, AAS learning subset (10), Karpathy methodology (15)
+- [x] Learning-by-default added to AGENTS.md; default-on trimmed 26 → 9 skills
+- [x] Rewrote brain README (single → multi-project) + default-skills manifest
+- [x] Scraped Karpathy X feed (100 tweets) via Apify; keychain-backed refresh script
+- [x] Demo: 75-line C Redis client (real RESP, SET/GET verified against local redis)
 
 ## This Week
-- Check remaining Legends domain gaps: `/tripStat/**` CORS, Apple/Google Pay merchant domain `reserve.legendslimousine.com`, passkeys still bound to `legendsweb.cw.tripslink.com`.
+- [ ] C/Redis learning — extend mini-redis (nil replies, TDD loop)
 
 ## Backlog
-- Sattvora: backend (orders, payments, database) and split `App.tsx`. Paused while Legends production login is open.
+- [ ] ecommerce-website: backend API / database / payment gateway integration
+- [ ] Refresh Karpathy feed periodically: `bash ~/brain/scripts/fetch-karpathy.sh 200`
 
 ## Done
-- [092826] CORS allow `https://reserve.legendslimousine.com` on JlimoApi `/**`.
-- [092826] Cross-site `websiteLoginToken` cookie (`SameSite=None; Secure; Partitioned`).
-- [092826] Access and refresh cookies use seconds and HTTPS `SameSite=None` (`a93cad3ddf`, `a0888e9253`).
-- [092826] Login returns `Api-Access-Token` / `Api-Refresh-Token`; website sends `Authorization: Bearer` (`9be02db156`, `7f805798c`).
-- [092826] Hazelcast client resolved live per call (`0b576d5a15`).
+- [x] Brain multi-project tracking operational; 100 projects indexed
+- [x] 165 skills installed across all agents; default-on set slimmed
+- [x] Karpathy learning source wired (skills + live X feed)
+- [x] Brain synced to GitHub (commit 9163bdb)
