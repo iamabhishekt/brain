@@ -45,3 +45,4 @@ This will automatically:
 1. Connect all 27 specialist agents, 1,950+ skills, rules, and commands.
 2. Register the project in this directory.
 3. Keep the project repository clean and focused on product source code.
+| [`codecrafters-redis-c`](file:///Users/abhishek/abhishek-projects/codecrafters-redis-c) | `/Users/abhishek/abhishek-projects/codecrafters-redis-c` | Auto-tracked repository | General / Codebase | Active |
