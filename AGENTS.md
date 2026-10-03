@@ -71,6 +71,13 @@ Every agent session runs with **learning mode on by default**. While doing proje
 | `aas-kaizen` | Continuous improvement of process and code shape |
 | `teach` | Teach the user a new skill or concept over sessions |
 
+### Default-on skill set
+The canonical list of always-on skills lives at `brain/tool-config/default-skills.md`.
+It covers learning (vibe-wise, eli5, socratic/teaching, continuous-learning, kaizen),
+concise communication (caveman, ponytail), and core engineering discipline
+(code-review, tdd, diagnosing-bugs, domain-modeling, codebase-design, grill-me,
+research, prototype, handoff, wizard, improve-codebase-architecture).
+
 ### Turn it off
 Say "pause learning" or "learning off" to suspend it for a session; say "resume learning" to bring it back.
 
