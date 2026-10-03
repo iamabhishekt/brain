@@ -60,5 +60,4 @@ Say `pause learning` or `learning off`. Say `resume learning` to bring it back.
 
 ## Exclusions
 
-- No Jlimo / Limosys skills are installed anywhere in the brain.
 - The full Agentic Awesome Skills catalog (2,500+ skills) is **not** installed — only the learning-relevant subset above, to avoid bloating context.
