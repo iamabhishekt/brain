@@ -85,4 +85,7 @@ if [ -n "$(git -C "$BRAIN_DIR" status --porcelain projects/)" ]; then
   echo "✓ Brain registry synced to GitHub."
 fi
 
+# Regenerate the one-view task index
+bash "${BRAIN_DIR}/scripts/master-index.sh" "${BRAIN_DIR}/projects/TASK-INDEX.md" >/dev/null 2>&1 || true
+
 echo "========================================================"

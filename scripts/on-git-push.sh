@@ -162,4 +162,7 @@ fi
   fi
 ) &
 
+# 6. Regenerate the one-view task index across all projects
+bash "${BRAIN_DIR}/scripts/master-index.sh" "${BRAIN_DIR}/projects/TASK-INDEX.md" >/dev/null 2>&1 || true
+
 exit 0
