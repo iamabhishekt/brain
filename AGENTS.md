@@ -45,6 +45,35 @@ Before making decisions or changing files:
 | Architecture and system design | `brain/architecture/` |
 | Curated documentation and research | `brain/documentation/` |
 
+## Learning-By-Default (ON)
+
+Every agent session runs with **learning mode on by default**. While doing project work, treat learning as part of the job — don't just ship code, grow understanding.
+
+### What this means in practice
+- **Reason before writing.** Before implementing, briefly surface the design tradeoffs and ask/confirm the approach when the decision is consequential. Borrowed from VibeWise (`vibe-wise-learn`).
+- **Teach as you go.** When a concept comes up, explain it at the right level for the audience — plain English for non-engineers, precise for engineers. (`eli5`, `aas-explain-like-socrates`)
+- **Learn continuously.** Capture non-obvious rules, gotchas, and decisions into the knowledge base as you discover them — so the next session inherits them. (`aas-cc-skill-continuous-learning`, `aas-learn`)
+- **Improve the codebase's shape.** Periodically look for structural deepening opportunities, not just feature work. (`improve-codebase-architecture`, `aas-kaizen`)
+- **Write the least that works.** Prefer stdlib, native features, and existing code over new dependencies and abstractions. The best code is the code you never wrote. (`ponytail`)
+- **Talk concisely.** Say the important thing, drop throat-clearing. (`caveman`)
+
+### Available learning skills
+| Skill | Use when |
+|---|---|
+| `vibe-wise-learn` | Starting a new project or unfamiliar repo — reasoning-first onboarding |
+| `eli5` | Explain anything to any audience (kids, managers, engineers, parents) |
+| `aas-explain-like-socrates` | Socratic explanation instead of a dump of facts |
+| `aas-tutorial-engineer` / `aas-technical-tutorials` | Turn a concept into a tutorial |
+| `aas-learn` / `aas-cc-skill-continuous-learning` | Capture learnings into the knowledge base |
+| `aas-learning-career-development` | Career-skill growth guidance |
+| `aas-javascript-mastery` | Deepen JS/TS mastery |
+| `aas-crossframe-teach` | Teach across frameworks |
+| `aas-kaizen` | Continuous improvement of process and code shape |
+| `teach` | Teach the user a new skill or concept over sessions |
+
+### Turn it off
+Say "pause learning" or "learning off" to suspend it for a session; say "resume learning" to bring it back.
+
 ## Local State
 
 `CURRENT_STATE.local.md`, `Task Board.md`, `Daily Notes/`, and `Scratchpad.md` are local workflow files. Refresh local state from repository evidence and user direction; never invent completed work.
