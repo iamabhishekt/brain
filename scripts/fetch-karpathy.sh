@@ -25,10 +25,14 @@ MAX="${1:-100}"
 
 mkdir -p "$OUT_DIR"
 
-# APIFY_TOKEN must be in the environment (never committed).
+# APIFY_TOKEN from env, else macOS keychain (service "apify", account "apify").
+if [ -z "${APIFY_TOKEN:-}" ]; then
+  APIFY_TOKEN="$(security find-generic-password -s apify -a apify -w 2>/dev/null || true)"
+fi
 if [ -z "${APIFY_TOKEN:-}" ]; then
   echo "Error: APIFY_TOKEN is not set."
   echo "  export APIFY_TOKEN='apify_api_...'"
+  echo "  or: security add-generic-password -s apify -a apify -w 'apify_api_...'"
   echo "  Get one at https://apify.com/store/tokens (free tier available)."
   exit 1
 fi
@@ -78,13 +82,54 @@ curl -s "https://api.apify.com/v2/datasets/${DATASET_ID}/items?format=jsonl" \
 COUNT=$(wc -l < /tmp/karpathy-items.jsonl 2>/dev/null || echo 0)
 echo "  Retrieved ${COUNT} tweets."
 
-# Append (dedup by tweet id) so repeated runs don't duplicate.
+# Normalize to a consistent schema before saving. The Actor returns
+# tweet_id/text/created_at/like_count/etc.; we keep the raw rows as-is but
+# also emit a normalized .jsonl for easy grepping.
+cat /tmp/karpathy-items.jsonl | node -e '
+const fs=require("fs");
+let out="";
+process.stdin.on("data",d=>d.toString().split("\n").filter(Boolean).forEach(line=>{
+  try {
+    const t=JSON.parse(line);
+    out+=JSON.stringify({
+      id:t.tweet_id,
+      text:t.text||t.full_text||"",
+      created_at:t.created_at,
+      likes:t.like_count||0,
+      retweets:t.retweet_count||0,
+      replies:t.reply_count||0,
+      quotes:t.quote_count||0,
+      views:t.view_count||0,
+      lang:t.lang||"en",
+      url:t.url||("https://x.com/karpathy/status/"+t.tweet_id),
+      is_retweet:!!t.is_retweet,
+      is_reply:!!t.is_reply,
+      hashtags:t.hashtags||[],
+      urls:t.urls||[]
+    })+"\n";
+  } catch(e) { /* skip malformed */ }
+});
+process.stdout.write(out);
+' > /tmp/karpathy-normalized.jsonl
+
+# Append with dedup by tweet id so repeated runs don't duplicate rows.
 if [ -f "$OUT_FILE" ]; then
-  cat /tmp/karpathy-items.jsonl >> "$OUT_FILE"
+  cat /tmp/karpathy-normalized.jsonl >> "$OUT_FILE"
+  node -e '
+    const fs=require("fs");
+    const seen=new Set();
+    const lines=fs.readFileSync(process.argv[1],"utf8").trim().split("\n").filter(Boolean);
+    const out=[];
+    lines.forEach(l=>{
+      try { const d=JSON.parse(l); if(d.id&&!seen.has(d.id)){seen.add(d.id);out.push(l);} } catch(e) {}
+    });
+    out.sort((a,b)=>new Date(JSON.parse(a).created_at)-new Date(JSON.parse(b).created_at));
+    fs.writeFileSync(process.argv[1], out.join("\n")+"\n");
+  ' "$OUT_FILE"
 else
-  cp /tmp/karpathy-items.jsonl "$OUT_FILE"
+  cp /tmp/karpathy-normalized.jsonl "$OUT_FILE"
 fi
 
-echo "  Saved to ${OUT_FILE} ($(wc -l < "$OUT_FILE") total rows)."
-rm -f /tmp/karpathy-run.json /tmp/karpathy-items.jsonl
+echo "  Saved to ${OUT_FILE} ($(wc -l < "$OUT_FILE") unique rows)."
+rm -f /tmp/karpathy-run.json /tmp/karpathy-items.jsonl /tmp/karpathy-normalized.jsonl
 echo "========================================================"
