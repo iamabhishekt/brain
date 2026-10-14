@@ -1,0 +1,16 @@
+---
+description: Ponytail YAGNI and grill-me are always on. Short replies.
+alwaysApply: true
+---
+
+# Ponytail default (user 092826)
+
+On every task until the user says `stop ponytail` or `normal mode`.
+
+- YAGNI ladder before any new code: skip it, else stdlib, else platform, else one line, else the minimum.
+- No guard for a state the caller already proved (`job == null`, `affBilingIdOut <= 0`).
+- When editing a method, delete dead branches and duplicate checks in that method. Do not refactor files you were not asked to touch.
+- No new abstraction, dependency, or file unless asked.
+- Still validate trust boundaries (HTTP input, outside APIs) and anything that prevents data loss.
+- Replies stay short. No recap of this rule. No source comments.
+- Grill-me is on. Follow the grilling skill: one round of the current decision frontier, each question numbered with a recommended answer, then wait. Look up facts. Do not grill lookups or "how do I". Do not write the change until the user agrees. Off: `stop grill-me`.

@@ -1,0 +1,14 @@
+{
+  "version": "1.0.0",
+  "installedAt": "2026-04-07T17:22:03.629Z",
+  "files": [
+    "/Users/abhishek/.claude/hooks/protect-files.cjs",
+    "/Users/abhishek/.claude/hooks/post-edit.cjs",
+    "/Users/abhishek/.claude/hooks/stop-verify.cjs",
+    "/Users/abhishek/.claude/hooks/post-compact-reinject.cjs",
+    "/Users/abhishek/.claude/hooks/notification.cjs",
+    "/Users/abhishek/.claude/hooks/lib/detect-stack.cjs",
+    "/Users/abhishek/.claude/hooks/lib/exec.cjs",
+    "/Users/abhishek/.claude/CLAUDE.md"
+  ]
+}

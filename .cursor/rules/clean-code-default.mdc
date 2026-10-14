@@ -1,0 +1,23 @@
+---
+description: Clean Code and Clean Code Guard are always on. High quality, SOLID, DRY/KISS/YAGNI, and LLM failure-mode prevention.
+alwaysApply: true
+---
+
+# Clean Code & Clean Code Guard defaults (user 100126)
+
+On every task until the user says `stop clean-code` or `stop clean-code-guard`.
+
+## Clean Code (Uncle Bob)
+- **Meaningful names**: Intention-revealing (`elapsedTimeInDays` not `d`). No uninformative names (`data`, `temp`, `info`, `item`, `obj`, `value`). Class names are nouns (`Customer`), method names are verbs (`postPayment`).
+- **Small functions**: Target ≤20 lines, do exactly one thing, one level of abstraction.
+- **Parameters**: 0-2 ideal, max 4. At 5, introduce a request/config object (record/DTO). Zero boolean flag arguments (split into two functions).
+- **Comments**: Never comment bad code—rewrite it. Comments explain *why*, never *what*. Delete commented-out code and step-marker scaffolding.
+- **Error handling**: Exceptions over return codes. Write try-catch first. Never return null; never pass null.
+- **Law of Demeter**: No train wrecks (`a.getB().getC().doSomething()`).
+- **TDD**: Write failing test first, F.I.R.S.T. principles.
+
+## Clean Code Guard (Pre-delivery self-check)
+- **Guard pass**: Re-check diff against imperatives before presenting or committing.
+- **SOLID**: Single Responsibility (one actor/stakeholder), Open/Closed (extend via strategy/polymorphism, not type-tag edits), Liskov Substitution (never refuse parent contract or weaken postconditions), Dependency Inversion (abstractions live with client).
+- **DRY / KISS / YAGNI**: Knowledge duplication vs text duplication. Sandi Metz re-inline rule. Cyclomatic complexity ≤10, nesting depth ≤5. Zero speculative abstractions or dead config flags.
+- **LLM Failure Modes**: Never swallow exceptions in broad catch-alls; never hardcode fake fixture values to fake passing tests; never introduce unverified or hallucinated dependencies.

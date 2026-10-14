@@ -1,0 +1,39 @@
+---
+description: Passenger Link website — read master plan + linked docs before any website work; Figma pixel-first.
+alwaysApply: true
+---
+
+# Passenger Link website — agent bootstrap
+
+**Trigger:** Any task touching `passenger_link/website/`, `/website` routes, PassengerLink-3.0 Figma, or `documentation/passenger_link_devlogs/`.
+
+## Step 0 — read docs (mandatory, in order)
+
+1. **`documentation/passenger_link_devlogs/PASSENGER_LINK_WEBSITE_PLAN.md`**
+   - §0 workflow · §17 progress · **§20 wizard tracker**
+   - Follow every markdown link relevant to the task (004, 007, 009, FIGMA_BATCH_INTAKE, …)
+2. **`documentation/passenger_link_devlogs/004_website_screen_plans.md`** — target screen row
+3. **`documentation/passenger_link_devlogs/CONTEXT.md`** — glossary; update when terms resolve
+4. **Step-specific devlogs** — e.g. `009` for step 1 pixel, `007` for `1689:*` nodes, `008` for quote API
+5. **`PASSENGER_LINK_ARCHITECTURE.md`** — only when auth/API/network involved
+
+If plan §0 links new markdown, **read those too** before coding. Plan edits expand the doc graph automatically.
+
+## Step 1 — Figma (pixel-first)
+
+- File `CbcNDa2mJFHGucUcLqVchk`, canonical wizard nodes **`1689:*`**
+- `figma_get_design_context` on target node; user screenshots override when MCP rate-limited
+- **No** pasted Figma Tailwind/hex — use `websiteThemeCssVars` + `var(--*)` in `websiteStyles.ts`
+- A/B pairs = one React component + props, not two routes
+- `1689:4558` = address **dropdown component** spec, not a full-screen frame
+
+## Step 2 — code rules
+
+- Path: `ReactJLimoWeb/passenger_link/client/src/passenger_link/website/`
+- ≤5 files per phase; eslint on touched files before done
+- Wrap shared booking engine — never fork jQuery/JSP logic
+- **Never** mark §20 Figma pixel ✅ without screenshot or MCP match
+
+## Step 3 — close session
+
+Update §17, §20, 004, relevant devlog. New decisions → plan §13 or CONTEXT.md.

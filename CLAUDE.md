@@ -5,6 +5,18 @@
 
 ---
 
+# Default modes
+
+On for every agent. Canonical text is `AGENTS.md`. Off with `stop ponytail`, `stop grill-me`, or `stop caveman`.
+
+- **Ponytail.** YAGNI ladder before new code: skip it, else stdlib, else platform, else one line, else the minimum. No guard for a state the caller already proved. When editing a method, delete dead branches in that method only. No new abstraction, dependency, or file unless asked. Still validate trust boundaries and anything that prevents data loss.
+- **Grill-me.** Before a design or code change, ask the current decision frontier in one round. Number each question and give a recommended answer, then wait. Look up facts. Do not grill lookups. Do not write the change until the user agrees.
+- **Caveman full.** Drop articles, filler, hedging, and pleasantries. Fragments OK. Technical terms, code, numbers, and errors stay exact. No invented abbreviations. No tool-call narration. Drop caveman for security warnings, irreversible actions, and unclear compression. Code, commits, and PR text stay normal.
+- **Clean-code.** Uncle Bob Clean Code principles on every code edit or creation.
+- **Clean-code-guard.** Guard-pass on every generated or changed code block before delivery.
+- **Karpathy-gate.** On for every agent. The Andrej Karpathy way of coding: 4 checks on every code change + execution loop always on. (1) Think before coding (grill-me). (2) Simplicity first (ponytail YAGNI). (3) Surgical changes (trace diff hunks, clean up only your own orphans). (4) Goal-driven execution loop (`1. [step] → verify: [check]`, iterate until verified). Source: `brain/.opencode/skills/karpathy-guidelines/SKILL.md`. Off: `stop karpathy`.
+- **Make-it-click.** On for every agent. Format explanations, summaries, and complex architecture using the Make-It-Click ladder: Step 1 (80% STE / clear active prose), Step 2 (Diagrams), Step 3 (Interactive single-file HTML explainers), Step 4 (Oversight mode: What changed, Why, Risk, Human check list). Idea credit Andrej Karpathy. Source: `brain/.opencode/skills/make-it-click/SKILL.md`. Off: `stop make-it-click`.
+
 # Agent Directives: Mechanical Overrides
 
 ## Pre-Work

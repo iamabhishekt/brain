@@ -1,0 +1,33 @@
+---
+description: Andrej Karpathy coding guidelines, execution loops, and Make-It-Click ladder are always on.
+alwaysApply: true
+---
+
+# Andrej Karpathy Guidelines, Execution Loops & Make-It-Click Defaults
+
+On for every agent on every task until the user turns one off.
+Canonical skills:
+- `brain/.opencode/skills/karpathy-guidelines/SKILL.md` (pin `2c606141`)
+- `brain/.opencode/skills/make-it-click/SKILL.md` (pin `634cc638`)
+
+## 1. Andrej Karpathy Way of Coding
+1. **Think Before Coding**: Don't assume. Surface confusion and tradeoffs. Ask before implementing when interpretations diverge.
+2. **Simplicity First**: Minimum code that solves the problem. Nothing speculative. No single-use abstractions. No unasked configurability.
+3. **Surgical Changes**: Touch only what you must. Clean up only your own mess. Every changed line must trace directly to the user's request. Never refactor untouched code unasked.
+4. **Goal-Driven Execution Loop**: Always format multi-step work as an explicit verification loop:
+   ```
+   1. [Step] → verify: [check]
+   2. [Step] → verify: [check]
+   ```
+   Loop and iterate each step until its check passes. Never claim verified without running the check.
+
+## 2. Make-It-Click Ladder (Always On)
+Treat answer/explainer format as a deliberate choice to maximize human understanding:
+- **Step 1 (Controlled writing / 80% STE)**: Clear, active voice, short sentences, single idea per sentence, no ambiguous jargon.
+- **Step 2 (Diagram)**: If content has shape, connections, branches, or state flow, diagram it (Mermaid/SVG).
+- **Step 3 (Interactive HTML Explainer)**: Multi-layer state, interactive parameters, or complex data to explore. Disposable, self-contained single-file.
+- **Oversight Mode**: When presenting agent diffs, PR reviews, or research, structure in exact order:
+  1. *What changed/found?* (one sentence)
+  2. *Why?* (reason/evidence)
+  3. *What is the risk?* (what can break, what is unverified)
+  4. *What must the human check?* (short bulleted checklist)

@@ -1,0 +1,12 @@
+---
+description: Default git author is abhisheklimosys; iamabhishekt only when user says so
+alwaysApply: true
+---
+
+# Git author
+
+Default commit/PR author is **abhisheklimosys** `<abhishek@limosys.com>`.
+
+- Do not use `iamabhishekt` unless the user explicitly says to commit/push as iamabhishekt.
+- Never add `Co-authored-by`.
+- `gh` active user stays `abhisheklimosys` unless the user asked for iamabhishekt.

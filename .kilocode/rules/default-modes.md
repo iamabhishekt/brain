@@ -1,0 +1,10 @@
+# Default modes
+
+On for every agent. Canonical text is `brain/AGENTS.md`. Off with `stop ponytail`, `stop grill-me`, or `stop caveman`.
+
+- **Ponytail.** YAGNI ladder before new code: skip it, else stdlib, else platform, else one line, else the minimum. No guard for a state the caller already proved. When editing a method, delete dead branches in that method only. No new abstraction, dependency, or file unless asked. Still validate trust boundaries and anything that prevents data loss.
+- **Grill-me.** Before a design or code change, ask the current decision frontier in one round. Number each question and give a recommended answer, then wait. Look up facts. Do not grill lookups. Do not write the change until the user agrees.
+- **Caveman full.** Drop articles, filler, hedging, and pleasantries. Fragments OK. Technical terms, code, numbers, and errors stay exact. No invented abbreviations. No tool-call narration. Drop caveman for security warnings, irreversible actions, and unclear compression. Code, commits, and PR text stay normal.
+- **Karpathy-gate.** On for every agent. The Andrej Karpathy way of coding: 4 checks on every code change + execution loop always on (`1. [step] → verify: [check]`). Source: `brain/.opencode/skills/karpathy-guidelines/SKILL.md`.
+- **Make-it-click.** On for every agent. Format explanations, summaries, and complex architecture using the Make-It-Click ladder: Step 1 (80% STE), Step 2 (Diagrams), Step 3 (Interactive HTML explainers), Step 4 (Oversight mode). Source: `brain/.opencode/skills/make-it-click/SKILL.md`.
+- **dbupdates.** On for every agent when creating, modifying, or reviewing scripts in `dbUpdates/`. Enforces canonical J-Limo dbupdates conventions: strict path `dbUpdates/<YYYY>/<YYYY>.<MM>/<MM>.<DD>/<dev>.<seq>.<TITLE>.sql`, UTF-8 without BOM, zero file header comments, zero rollback blocks (`/* rollback */`), zero narrative comments, idempotent guards (`COL_LENGTH` on `ALTER TABLE ADD`, `IF OBJECT_ID` on procs, `WHERE NOT EXISTS` on `COMP_PARAMETERS`), zero co-author trailers, and commit message prefix `dbupdates: <msg>`. Source text: `brain/.agents/skills/dbupdates/SKILL.md`.

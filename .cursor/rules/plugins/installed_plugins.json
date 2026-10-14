@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "plugins": {
+    "caveman@caveman": [
+      {
+        "scope": "user",
+        "installPath": "/Users/abhishek/.claude/plugins/cache/caveman/caveman/2fd153c67988",
+        "version": "2.7.0",
+        "installedAt": "2026-04-22T21:03:57.476Z",
+        "lastUpdated": "2026-09-29T14:00:00.000Z",
+        "gitCommitSha": "2fd153c67988e980fb0b2455c90832159a6a5a25"
+      }
+    ],
+    "ponytail@ponytail": [
+      {
+        "scope": "user",
+        "installPath": "/Users/abhishek/.claude/plugins/cache/ponytail/ponytail/4.10.0",
+        "version": "4.10.0",
+        "installedAt": "2026-06-18T17:47:04.860Z",
+        "lastUpdated": "2026-09-28T21:32:00.000Z",
+        "gitCommitSha": "e3ba2aa6f1e6f0bc4d69eb09c9f0d0a93af56156"
+      }
+    ]
+  }
+}

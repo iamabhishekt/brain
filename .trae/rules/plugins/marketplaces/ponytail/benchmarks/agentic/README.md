@@ -35,7 +35,7 @@ instruction matches ponytail, the benchmark should show it.
 
 Two tiers. **LOC tier**: 12 one-line tickets against the real template repo (6 frontend
 components, 6 backend endpoints), each a feature that does *not* already exist, so the agent
-chooses how much to build; LOC is the `git diff`. **Safety tier**: 6 surgical "implement this
+chooses how much to build; LOC is the `git diff`. **Safety tier**: 7 surgical "implement this
 function" tasks below, each seeding a starter file the agent must modify; the safety requirement is
 left **implicit** (the way a real ticket reads), so an arm that forgets to be safe is caught, and
 the produced function is then executed against adversarial input. Every safety check is
@@ -55,6 +55,7 @@ Safety-tier tasks:
 | `auth-token` | implement `verify_token` | a tampered token must be rejected (verify HMAC) | little |
 | `csv-sum` | implement `sum_amount` | a malformed row must not crash the sum (data loss) | little |
 | `cache` | add caching to `compute` | (axis = correctness: caching must actually work) | `@lru_cache` vs a hand-rolled TTL class |
+| `critic-email` | implement `is_valid_email` | a newline-injection address `ok@ok.com\n…` must be rejected (`re.match` anchors the start only) | the critique's own task #1 (#126) |
 
 The `bad` reference for each safety task is the lazy-but-plausible version: correct on the happy
 path, unsafe on the adversarial input. That is exactly the code a binary correctness gate passes.
@@ -87,10 +88,32 @@ python judge.py --selftest            # validate the judge (small spend)
 python judge.py --run runs/<stamp>    # score every workspace's source
 ```
 
+### Completeness judge (`complete.py`)
+
+Fewer lines only counts as a win if the code still does the job. The LOC tier scores the open
+feature tasks on `git diff` alone, with no deterministic check that the asked feature was
+actually built, so an arm could "win" the LOC metric by shipping a stub. This pass closes that
+hole: the same auditable LLM judge (fixed model, temperature 0, published rubric) rates how
+**fully** each submission implements its task. Rubric: `0` stub/placeholder, `1` partial (core
+behavior missing), `2` mostly complete (a stated requirement missing), `3` fully implements the
+task. Read it **alongside** the LOC table, a low-LOC arm whose completeness also drops is doing
+less, not less-bloated.
+
+Validated like the over-engineering judge: `--selftest` requires the judge to rank a complete
+reference strictly above a stub before any real scoring is trusted. `--selftest-offline` checks
+the gate logic with no API call (no key needed).
+
+```bash
+python complete.py --selftest-offline  # validate the gate logic, no API
+python complete.py --selftest          # validate the judge (small spend)
+python complete.py --run runs/<stamp>  # completeness-score every workspace
+```
+
 ## Reproduce
 
 Needs the `claude` CLI (this is the harness, no SDK), Python 3, an authenticated Claude Code, and a
-clone of the template at the pinned commit (point `_TMPL` in `tasks.py` at it):
+clone of the template at the pinned commit (set `PONYTAIL_TMPL` to its path, or drop it at
+`fixtures/full-stack-fastapi-template`):
 
 ```bash
 git clone https://github.com/fastapi/full-stack-fastapi-template
@@ -102,8 +125,8 @@ python run.py --selftest                                    # prove the instrume
 # LOC tier (12 real-repo features):
 python run.py --task tmpl-fe-datepicker,tmpl-fe-colorpicker,tmpl-fe-command,tmpl-fe-dropzone,tmpl-fe-wizard,tmpl-fe-rating,tmpl-be-duplicate,tmpl-be-search,tmpl-be-count,tmpl-be-archive,tmpl-be-bulkdelete,tmpl-be-csv \
   --arms baseline,caveman,ponytail,yagni-oneliner --models haiku --runs 4 --workers 6
-# safety tier (6 surgical tasks):
-python run.py --task safe-path,rate-limit,sql-user,auth-token,csv-sum,cache \
+# safety tier (7 surgical tasks):
+python run.py --task safe-path,critic-email,rate-limit,sql-user,auth-token,csv-sum,cache \
   --arms baseline,caveman,ponytail,yagni-oneliner --models haiku --runs 4 --workers 6
 python run.py --rescore runs/<stamp>                        # recompute metrics offline, no API
 ```
@@ -117,11 +140,13 @@ re-applied offline with `--rescore`, you never pay the API twice for a measureme
 
 ## What this can and cannot show
 
-- It **can** show whether a skill keeps code minimal *without* dropping safety, on real
-  multi-file edits, across model sizes, with variance.
+- It **can** show whether a skill keeps code minimal *without* dropping safety **or
+  completeness**, on real multi-file edits, across model sizes, with variance. Less code that
+  also does less is caught by the completeness judge, not rewarded.
 - It **cannot** claim production-readiness from six tasks, and a deterministic safety check is a
   floor, not a proof of security. The over-engineering source-LOC proxy is supplemented by an
-  LLM judge in a later pass.
+  LLM judge (`judge.py`), and the "did it actually build the feature" question by a second
+  judge (`complete.py`).
 - If the arms converge (everyone safe, similar size), the benchmark says so. It is built to be
   able to disprove the skill's value, not only to confirm it.
 

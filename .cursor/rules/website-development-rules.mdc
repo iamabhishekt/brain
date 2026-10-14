@@ -1,0 +1,98 @@
+---
+description: Website development non-negotiable rules - Figma, scope, reuse, research, code review, WCNC. Always active.
+alwaysApply: true
+---
+
+# Website Development Rules (NON-NEGOTIABLE)
+
+These rules apply to ALL work on the PassengerLink website. Never forget. Never override.
+
+## 1. Figma Screens - Use Cached Extractions
+
+- **Source of truth:** `documentation/FigmaChanges/plumb_extraction_30/` - 30 screens extracted via plumb.
+- **Primary screen:** Node `8120:9058` ("Starting Point", 1440x900) at `node_8120-9058.json`.
+- **Do NOT re-extract** from Figma unless a specific node changed. User will paste node link if re-extraction needed.
+- **Only extract new screens if the user explicitly provides them** (paste node link or asks to extract). Otherwise use existing cached JSONs only. Never proactively call plumb to extract.
+- Read `INDEX.md` first to find the right node file. Read the JSON spec for tokens, layout, positions, sizes.
+- Every design decision (color, size, position, radius, shadow) must trace back to a Figma token in the cached JSON.
+
+## 2. No PassengerLink Edits - Website is the Host App
+
+- **Website = main app.** It accommodates PassengerLink and other apps inside it.
+- **PassengerLink = routing + shared infrastructure.** Used for routing and other stuff.
+- **NEVER edit `PassengerLinkApp.tsx`, `PassengerLinkRoutes.tsx`, or any file outside `projects/website/`** for website design fixes.
+- All fixes stay in `ReactJLimoWeb/cust_web/client/src/projects/website/` scope only.
+- If a bug's root cause is in PassengerLink, find a workaround within website scope. Do not touch the host.
+
+## 3. Reuse Existing Code - Don't Reinvent
+
+- Before writing anything new, search the existing codebase for components, hooks, utilities that already solve the problem.
+- `LsMap`, `callAPI`, `resolveEnv`, `bookingTransformers`, `usePlacesSearch` - these exist. Use them.
+- Follow Rule of Three (from DEEP_RESEARCH_REPORT): don't abstract until 3rd instance. Don't extract shared wrappers prematurely.
+- If a utility exists in `passenger_link/` or `utils/`, import and reuse it. Don't duplicate.
+- Wrap shared booking engine - never fork jQuery/JSP logic.
+
+## 4. No BS in Handoffs
+
+- `SESSION_HANDOFF.md` = factual current state. Nothing else.
+- Write ONLY what was actually done: real commits, real file changes, real errors found and fixed.
+- Do NOT invent, estimate, or pad. If something wasn't verified, say "not verified."
+- Do NOT write speculative next steps. Write the actual next task based on actual work.
+- Reference real sources: commit hashes, file paths, Figma node IDs, line numbers.
+- If you don't know something, write "unknown" - don't make it up.
+
+## 5. Export Chats with JSONL - Never Hand-Write Summaries
+
+- On WCNC, convert the actual JSONL transcript to `chat.md` using `brain/scripts/devshot/jsonl2md.mjs`.
+- **NEVER hand-write a `chat.md` summary.** The real transcript lives at:
+  `~/.cursor/projects/Users-abhishek-Dev-Intellij-gitJlimoWeb/agent-transcripts/<uuid>/<uuid>.jsonl`
+- Command: `node brain/scripts/devshot/jsonl2md.mjs <jsonl_path> <output_path>`
+- The `chat.md` must contain actual user/assistant messages from the session, not a summary.
+
+## 6. Review Code After Every Change
+
+- After substantive edits, run `ReadLints` on touched files. Fix introduced errors.
+- Run `npx tsc --noEmit` and check for errors in `projects/website/` (ignore pre-existing legacy errors).
+- Cross-check changes against `DEEP_RESEARCH_REPORT.md` findings:
+  - Component under ~100 lines?
+  - Boolean props under 3-4?
+  - Folder nesting max 2-3 levels?
+  - Tokens follow three-tier hierarchy (primitive -> semantic -> component)?
+  - Per-step validation before advancing wizard?
+  - Animating only transform/opacity (when Motion.dev is added)?
+- If the architecture is flawed or patterns inconsistent, say so. "What would a senior perfectionist dev reject in code review?" Fix it.
+
+## 7. Deep Research Before, Add to Existing, Use Always
+
+- **Before any new feature or architectural decision**, read `documentation/research/DEEP_RESEARCH_REPORT.md`.
+- If the research doesn't cover the topic, do new research (Anthropic deep-research workflow: scope -> decompose -> fan-out -> verify -> synthesize).
+- **Add new findings** to the existing `DEEP_RESEARCH_REPORT.md` - don't create a separate report.
+- **Use research for every spec and review.** Cross-check every design decision against confirmed findings.
+- Think every time: "How do I make this the best it can be for the web app?" Not just "make it work."
+- Per-commit checks table in `SESSION_HANDOFF.md` must reflect research findings.
+
+## 8. WCNC Protocol - No BS, Real Work Only
+
+- `SESSION_HANDOFF.md` overwritten each WCNC with ACTUAL current state.
+- Transcript exported from real JSONL (rule 5). Never hand-written.
+- Handoff must include:
+  - Real repo + branch + commit hash (from `git log`)
+  - Real working tree status (from `git status`)
+  - Real uncommitted file changes (file path + what changed)
+  - Real env vars (from `.env.development.local.website`)
+  - Real Figma specs being followed (node IDs + token references)
+  - Per-commit checks table from DEEP_RESEARCH_REPORT
+  - Documentation map with trust levels
+  - Actual next step (not speculative)
+  - Decisions locked (with source: user quote, Figma node, or research finding)
+- Numbered folder `NN_short_name/` created for transcript archive.
+- Never overwrite previous session folders.
+
+## 9. Think Best for the Web App
+
+- Every decision: "Is this the best approach for a production web app?"
+- Not "fastest." Not "easiest." Best.
+- Consider: maintainability, scalability, multi-tenant readiness, accessibility, performance, type safety, security.
+- If a shortcut is taken, mark it with a comment explaining the ceiling and upgrade path.
+- Don't add abstractions nobody asked for. Don't add dependencies if stdlib works. Deletion over addition. Boring over clever.
+- But: never be lazy about input validation at trust boundaries, error handling that prevents data loss, security, accessibility, or anything explicitly requested.

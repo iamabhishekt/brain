@@ -1,0 +1,35 @@
+---
+description: Load /start, Claudify commands, and brain current-state for every Cursor agent session
+alwaysApply: true
+---
+
+# Brain + session commands
+
+This workspace has a local brain and Claudify slash-command set. Cursor CLI (`agent`) and the IDE agent must use them.
+
+## When user says start, /start, continue, or opens a fresh session
+
+Follow `.cursor/commands/start.md`. That wraps `.claude/commands/start.md` and then reads the brain stack.
+
+## Sources of truth
+
+| Need | File |
+|---|---|
+| Workspace invariants, read order | `AGENTS.md` |
+| How to work | `documentation/agent-context/WORKING_AGREEMENT.md` |
+| What is in focus now | `brain/CURRENT_STATE.local.md` |
+| Task detail | `Task Board.md` |
+| Command catalog | `.claude/command-index.md` |
+| Command procedures | `.claude/commands/{name}.md` |
+| Cursor slash wrappers | `.cursor/commands/{name}.md` (`start`, `sync`, `wrap-up`) |
+| Website WCNC handoff | `brain/archives/chats/SESSION_HANDOFF.md` |
+
+Ignore `documentation/passenger_link_devlogs/` as current product state.
+
+## Other rituals
+
+- `/sync` → `.cursor/commands/sync.md`
+- `/wrap-up` → `.cursor/commands/wrap-up.md`
+- `/audit`, `/safe-clear`, `/unstick` → read `.claude/commands/` for that name and self-execute when tools allow
+
+Do not duplicate these files. Execute the linked procedure.

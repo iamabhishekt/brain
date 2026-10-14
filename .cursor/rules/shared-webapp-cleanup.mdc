@@ -1,0 +1,24 @@
+---
+description: Keep current Passenger Link unchanged. New flow only when VITE_NEW_PASSENGER_LINK=Y.
+globs: JLimoCore/JlimoApi/**/*.java,ReactJLimoWeb/cust_web/**/*.{ts,tsx}
+alwaysApply: false
+---
+
+# Shared cust web cleanup
+
+Current Passenger Link stays as it is until it is replaced. The new flow is a flag, not a rewrite of the old app.
+
+- Missing or `N` for `VITE_NEW_PASSENGER_LINK`: `POST /passenger_link/webApp/initWebApp`, `POST /passenger_link/webApp/getMyTrips`, phone-login key `initWebApp`, price check `bookNewJob`. Legends booking stays on in code. Other companies still turn booking off when `BOOKING_ENABLED=N`.
+- `VITE_NEW_PASSENGER_LINK=Y` only, and only in the website env: init is `POST /custWeb/initCustWebApp`, booking stays on, price check is `refreshRates`. Do not set this on the passengerlink env.
+- New shared logic goes in `CustWebAppService` and `CustWebBookingController`. `WebAppService` stays the current Passenger Link service.
+- Shared HTTP mappings live on `CustWebBookingController`.
+- Each `BookingController` keeps only calls that are still unique to that app.
+- Do not copy a response map or look up the same data in a second service.
+- The full init body includes fields either side needs.
+
+```java
+// passenger link
+return webAppService.initWebApp();
+// legends website
+return custWebAppService.initCustWebApp();
+```

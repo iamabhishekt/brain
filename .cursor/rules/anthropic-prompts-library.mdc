@@ -1,0 +1,58 @@
+---
+description: Anthropic/Claude prompts library — system prompts, skills, and reference material for any model. Reference when building agents, reviewing code, doing research, or needing model behavior details.
+alwaysApply: false
+globs:
+  - "**/*.md"
+---
+
+# Anthropic Prompts Library
+
+A central library of Anthropic/Claude system prompts, skills, and reference material lives at:
+
+```
+/Users/abhishek/Prompts/Anthropic/
+```
+
+## What's available
+
+### Skills (auto-discovered in Claude Code & TRAE)
+- `code-review` — multi-level code review (low → max)
+- `dataviz` — data visualization design guidance
+- `deep-research` — fan-out web research with cited reports
+- `run-skill-generator` — generate per-project run skills
+
+### System prompts (browse for reference)
+- **Root `*.md`** — current model prompts: `claude-opus-4.8.md`, `claude-sonnet-5.md`, `claude-design.md`, `visualize.md`, `research_instructions.md`, `anthropic_reminders.md`, etc.
+- **`Official/`** — dated release-notes archive (2024-07-12 → 2026-05-28)
+- **`old/`** — legacy prompts (Claude 3.7, 4.1, 4.5)
+- **`raw/`** — unedited raw system prompts (opus/sonnet 4.6, ±tools)
+
+### Claude Code tool docs & slash commands
+`Claude Code/bundled-skills/` contains `glob-tool.md`, `grep-tool.md`, `init.md`, `compact.md`, `debug.md`, `verify.md`, `run.md`, `loop.md`, `schedule.md`, `batch.md`, `simplify.md`, `security-review.md`, and more.
+
+## How to use
+
+```bash
+# Browse the library
+ls /Users/abhishek/Prompts/Anthropic/
+
+# Read the master index
+cat /Users/abhishek/Prompts/Anthropic/README.md
+
+# Agent discovery guide
+cat /Users/abhishek/Prompts/Anthropic/AGENTS.md
+
+# Search across all prompts
+grep -ri "<keyword>" /Users/abhishek/Prompts/Anthropic/
+```
+
+## When to reference this library
+
+- **Building a custom agent** → check existing system prompts for patterns
+- **Needing Claude's exact behavior** → read the model-specific prompt
+- **Code review** → invoke the `code-review` skill or read the level templates
+- **Research tasks** → invoke `deep-research` skill or read `research_instructions.md`
+- **Design/artifact work** → read `claude-design.md` or `visualize.md`
+- **Safety/reminders** → read `anthropic_reminders.md`
+
+Single source of truth — edit in place, all tools see updates via symlinks.

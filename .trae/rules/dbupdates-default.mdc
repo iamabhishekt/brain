@@ -1,0 +1,25 @@
+---
+description: Canonical J-Limo dbUpdates SQL migration conventions are always on for any dbUpdates script.
+alwaysApply: true
+---
+
+# dbUpdates Default Conventions
+
+On by default for every agent modifying or creating files in `dbUpdates/`.
+Canonical skill: `brain/.agents/skills/dbupdates/SKILL.md`.
+
+## Non-Negotiable Invariants
+1. **Path & Hierarchy**: `dbUpdates/<YYYY>/<YYYY>.<MM>/<MM>.<DD>/<developer>.<seq>.<TITLE_OR_ACTION>.sql`
+   - Sequence zero-padded 2-digit (`01`, `02`, `03`...). Developer handle lowercase.
+2. **Encoding**: Strictly UTF-8 **WITHOUT BOM** (standard ASCII/UTF-8). Never emit `\xef\xbb\xbf`. Unix LF line endings.
+3. **No Header Comments**: Zero author blocks, timestamps, Jira summaries at file top.
+4. **No Rollback Blocks**: Never include `/* rollback ... */` or commented drop scripts.
+5. **No Narrative Comments**: Stored procedures and tables must be self-explanatory T-SQL. Single-line `-- comment` only for rare edge cases.
+6. **Idempotent Guards**:
+   - `ALTER TABLE ADD`: MUST wrap with `IF COL_LENGTH('dbo.Table', 'Col') IS NULL BEGIN ALTER TABLE ... END`.
+   - Stored procs: `IF OBJECT_ID(N'[dbo].[proc]', N'P') IS NOT NULL DROP PROCEDURE [dbo].[proc]`, `GO`, then `CREATE PROCEDURE`.
+   - `COMP_PARAMETERS`: `WHERE NOT EXISTS (SELECT 1 FROM COMP_PARAMETERS WHERE COMP_ID = C.COMP_ID AND COMP_PARAM = '...')`.
+7. **Git & Commit Standards**:
+   - Commit prefix: `dbupdates: <msg>`.
+   - **Zero co-authors**: NEVER add `Co-Authored-By:` lines.
+   - Author: `abhisheklimosys <abhishek@limosys.com>`.

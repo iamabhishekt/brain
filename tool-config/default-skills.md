@@ -26,6 +26,10 @@ say "load X" to bring it in for a session.
 | `karpathy-llm-wiki` | learning | Let the LLM maintain your KB; you do the exploring |
 | `ponytail` | engineering | Write the least that works |
 | `caveman` | engineering | Talk concisely; drop throat-clearing |
+| `clean-code` | engineering | Uncle Bob Clean Code principles on every code edit |
+| `clean-code-guard` | engineering | Guard-pass on generated/changed code blocks |
+| `karpathy-guidelines` | engineering | Karpathy 4 checks on code change + execution loop |
+| `make-it-click` | communication | Explanations using the Make-It-Click ladder |
 
 ## Opt-in (installed, load on demand)
 

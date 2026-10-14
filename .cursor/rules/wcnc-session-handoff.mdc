@@ -1,0 +1,85 @@
+---
+description: WCNC session handoff workflow - carry context between chat sessions.
+alwaysApply: true
+---
+
+# WCNC - Will Continue Next Chat
+
+Session continuity workflow for long-running projects. Keeps context across chat sessions without forcing next chat to read full transcripts.
+
+## Trigger
+
+When user says **WCNC** (case-insensitive, without quotes), execute the handoff.
+
+## On WCNC
+
+1. **Create numbered folder** `brain/archives/chats/NN_short_descriptive_name/` where `NN` is next sequential number (check existing folders for latest).
+2. **Transcript archive** — either:
+   - **User:** Cursor chat menu (⋯) → **Export Transcript** → save as `brain/archives/chats/NN_*/chat.md`
+   - **Agent (CLI workaround):** No `cursor export transcript` command. Copy latest JSONL from `~/.cursor/projects/<project>/agent-transcripts/<uuid>/<uuid>.jsonl`, convert user/assistant text to markdown, write `chat.md`. Never hand-write a summary as substitute.
+3. **Update `brain/archives/chats/SESSION_HANDOFF.md`** with current state:
+   - Repo + branch + last commit hash + description
+   - Working directory + working tree status (clean/dirty)
+   - Env vars in use
+   - What's done (commits table)
+   - What's next (next commit / task)
+   - Known issues / TODO
+   - Decisions locked
+   - How to resume (one-liner: "Read SESSION_HANDOFF.md and continue with X")
+4. **Update last-updated timestamp** at top of handoff.
+
+**WCNC split:** Agent = folder + `SESSION_HANDOFF.md` + optional JSONL→`chat.md`. User = UI Export Transcript (same result, often prettier).
+
+## On Resume (post-WCNC setup - MANDATORY)
+
+When user says any of:
+- "continue"
+- "read SESSION_HANDOFF.md and continue"
+- "pick up where I left off"
+- new chat after a WCNC
+
+**Do this in order before any implementation:**
+
+1. **Read `brain/archives/chats/SESSION_HANDOFF.md`** - single source of truth for current state (repo, branch, last commit, what's done, what's next, decisions locked).
+2. **Read `documentation/research/DEEP_RESEARCH_REPORT.md`** - clean/maintainable architecture guidance. Cross-check every spec + review against it (per-commit checks table in handoff).
+3. **Read cached Figma specs** at `documentation/FigmaChanges/plumb_extraction_30/INDEX.md` when design tokens/layout needed (do NOT re-extract from Figma unless a node changed).
+4. **Resume work at "What's next"** in handoff. Follow handoff exclusively.
+5. **Do NOT re-ask** questions answered in handoff.
+6. **Re-engage Coach Mode** for `website/` UI work (see CLAUDE.md "Working Agreement: Coach Mode"): user writes all code, assistant provides specs + file paths + Figma analysis + code review + React concept teaching. Do NOT use Write/Edit/SearchReplace on website UI source files.
+7. **Read and follow `.cursor/rules/website-development-rules.mdc`** - non-negotiable rules for Figma usage, scope boundaries, code reuse, research, handoffs, and WCNC. Never override these rules.
+
+## Documentation map (what lives where - do NOT confuse)
+
+| Folder | Purpose | Trust level |
+|:------|:--------|:-----------|
+| `brain/archives/chats/SESSION_HANDOFF.md` | Current state - **single source of truth** | ✅ Always follow |
+| `brain/archives/chats/NN_*/chat.md` | Past session transcripts (archive) | 📖 Reference only |
+| `documentation/research/` | Clean code + architecture research reports | ✅ Follow for quality |
+| `documentation/FigmaChanges/` | Cached Figma design specs (plumb extraction) | ✅ Use for design tokens/layout |
+| `documentation/passenger_link_devlogs/` | **STALE - abandoned path history** | ❌ Ignore entirely |
+| `documentation/website_architecture/` | Permanent architecture decisions | ✅ Follow |
+
+**Critical:** `passenger_link_devlogs/` (plan §17/§20, devlogs 004-009) describes an abandoned website at `passenger_link/client/src/passenger_link/website/` with advanced features (bookNewJob quote, vehicle step, CarClassCard). That path is **empty**. Canonical website code lives at `cust_web/client/src/projects/website/`. Never trust `passenger_link_devlogs/` over `SESSION_HANDOFF.md`.
+
+## Folder Structure
+
+```
+brain/archives/chats/
+├── README.md                    ← workflow explainer
+├── SESSION_HANDOFF.md           ← always latest (overwritten on WCNC)
+├── 01_git_branching_model/
+│   └── chat.md
+├── 02_figma_booking_wizard/
+│   └── chat.md
+└── NN_.../chat.md
+```
+
+## Rules
+
+- `SESSION_HANDOFF.md` = single source of truth for current state. Overwritten each WCNC.
+- Numbered folders = permanent archive. Never overwrite previous sessions.
+- Folder name format: `NN_short_snake_case_name` (e.g. `09_map_integration`).
+- If user says WCNC mid-task, still finish the handoff - next chat picks up from where you stopped.
+- Architecture decisions live in `documentation/website_architecture/` (permanent). Chat transcripts live in `brain/archives/chats/` (session record). Don't mix.
+- **Canonical website path:** `ReactJLimoWeb/cust_web/client/src/projects/website/`. The `passenger_link/client/src/passenger_link/website/` path in `passenger_link_devlogs/` is **abandoned/empty** - ignore those devlogs.
+- **After every WCNC, re-engage Coach Mode** for website UI work (user writes code, assistant gives specs + review + React teaching). See `CLAUDE.md` "Working Agreement: Coach Mode".
