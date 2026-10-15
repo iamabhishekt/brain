@@ -4,8 +4,8 @@
 - **Local Path:** /Users/abhishek/aio-wealth-hub
 - **Tech Stack:** General / Codebase
 - **Last Active Branch:** main
-- **Last Commit:** 09e7c24 — "fix(formatting): eliminate double negative currency format and integrate OpenAccountant Financial Independence panel"
-- **Last Push Timestamp:** 2026-10-15 02:39:22
+- **Last Commit:** d7b98ed — "feat(transactions): overhaul table with antislop design, human-readable account names, API-first filtering, and aggregate flow metrics"
+- **Last Push Timestamp:** 2026-10-15 02:43:10
 - **Status:** Active
 
 ## Overview
