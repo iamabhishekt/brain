@@ -58,3 +58,9 @@
 2. [x] Remove demo mode fallbacks from `SplitwisePanel.tsx` → verify: displays live `$512.08` balance
 3. [x] Deduplicate SQLite accounts table → verify: deleted placeholder IDs (`us-toyota-loan`, `us-citi-diamond-6617`, etc.)
 4. [x] Create master executable build & run script (`run_all.sh`) → verify: single command builds backend, syncs feeds, runs Jev, starts UI
+
+## Phase 11: OpenAccountant Skills & Telecom/Policy Ingestion [COMPLETED]
+1. [x] Install 44 OpenAccountant skills from `https://github.com/openaccountant/skills` to `~/.agents/skills/openaccountant`, `aio-wealth-hub/.claude/skills`, and `brain/.claude/skills` → verify: skills installed and indexed
+2. [x] Implement OpenAccountant Debt Payoff & Emergency Runway engine (`scripts/open_accountant.py`) → verify: calculates avalanche/snowball payoff and 3.5mo emergency runway from live SQLite ledger
+3. [x] Define and verify zero-cost, legal ingestion pathways for T-Mobile, Verizon Fios, Netflix, Jio, Airtel, and Indian Government Policies (DigiLocker / Setu BBPS / IMAP e-statements) → verify: fully documented without brittle scraping or paid aggregators
+
