@@ -27,6 +27,7 @@
 3. [x] Configure silent macOS `launchd` background agent (`scripts/setup_daily_cron.sh`) → verify: scheduled for 08:00 AM & 08:00 PM runs
 4. [x] Build `AutomatedSyncCard` UI with live status indicator and 1-click sync trigger → verify: `npm run build` passes in 820ms
 5. [x] Document 1-time Apple Shortcuts real-time tap sync & CAMS e-CAS schedule → verify: `documentation/automated-daily-sync-guide.md` created
+6. [x] Implement In-App Multi-Gmail & IMAP Vault (Zero Shell Exports) → verify: store multiple inboxes directly in SQLite & Keychain, test connections live from UI (`EmailAccountsManager.tsx`)
 
 ## Phase 5: Field Verification & Live Statement Ingestion [ACTIVE]
 1. [ ] Test automated IMAP fetch with user's email App Password → verify: real PDFs saved to `~/Documents/AIO-Wealth-Statements`
