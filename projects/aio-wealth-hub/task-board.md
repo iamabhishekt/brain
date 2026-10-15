@@ -64,3 +64,10 @@
 2. [x] Implement OpenAccountant Debt Payoff & Emergency Runway engine (`scripts/open_accountant.py`) → verify: calculates avalanche/snowball payoff and 3.5mo emergency runway from live SQLite ledger
 3. [x] Define and verify zero-cost, legal ingestion pathways for T-Mobile, Verizon Fios, Netflix, Jio, Airtel, and Indian Government Policies (DigiLocker / Setu BBPS / IMAP e-statements) → verify: fully documented without brittle scraping or paid aggregators
 
+## Phase 12: In-App Financial Independence (FIRE) Engine & Precision Formatting [COMPLETED]
+1. [x] Fix double negative currency formatting bug (`-$-43.64` -> `-$43.64`) in `TransactionsTable.tsx` → verify: Math.abs applied to currency conversions
+2. [x] Implement dynamic OpenAccountant REST endpoint (`GET /api/openaccountant/report`) in Axum backend → verify: returns live FIRE targets, savings rates, and runway in <50ms
+3. [x] Build comprehensive `FinancialIndependencePanel.tsx` UI with Lean/Standard/Fat FIRE targets, Avalanche vs Snowball debt action plan, and 3.5mo emergency runway → verify: integrated into Overview and dedicated FIRE tab
+4. [x] Verify multi-currency toggle ($ / ₹) across all FI indicators and compound growth projection simulator → verify: `npm run build` passes in 839ms
+
+
