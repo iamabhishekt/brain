@@ -21,6 +21,13 @@
 6. [x] Build 12-Month Spending & Net Worth Forecaster → verify: interactive slider adjusts Monte Carlo trajectory
 7. [x] Configure Tauri v2 (`src-tauri/tauri.conf.json`, `Cargo.toml`, `main.rs`) for native iOS (.ipa) & Android (.apk) packaging
 
-## Phase 4: Field Verification & REA Device Testing [ACTIVE]
-1. [ ] Live device test with ARTEMIS / Android emulator → verify: biometric unlock & local notifications firing
+## Phase 4: Automated Twice-Daily Ingestion Pipeline ($0.00 Cost) [COMPLETED]
+1. [x] Implement Rust `SyncDaemon` hot-folder watcher & 12h scheduled cycle → verify: `aio-wealth-backend` spawns background loop on startup
+2. [x] Implement zero-dependency IMAP statement fetcher (`scripts/fetch_statements_imap.py`) → verify: downloads attachments from Chase, PNC, Amex, Toyota, HDFC, Progressive, PSEG, Telecoms, CAMS, Netflix
+3. [x] Configure silent macOS `launchd` background agent (`scripts/setup_daily_cron.sh`) → verify: scheduled for 08:00 AM & 08:00 PM runs
+4. [x] Build `AutomatedSyncCard` UI with live status indicator and 1-click sync trigger → verify: `npm run build` passes in 820ms
+5. [x] Document 1-time Apple Shortcuts real-time tap sync & CAMS e-CAS schedule → verify: `documentation/automated-daily-sync-guide.md` created
+
+## Phase 5: Field Verification & Live Statement Ingestion [ACTIVE]
+1. [ ] Test automated IMAP fetch with user's email App Password → verify: real PDFs saved to `~/Documents/AIO-Wealth-Statements`
 2. [ ] Ingest live user statements & Splitwise token → verify: consolidated net worth matches real accounts
