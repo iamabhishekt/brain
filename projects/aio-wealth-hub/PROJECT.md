@@ -4,8 +4,8 @@
 - **Local Path:** /Users/abhishek/aio-wealth-hub
 - **Tech Stack:** General / Codebase
 - **Last Active Branch:** main
-- **Last Commit:** af2a4b0 — "feat(sync): add in-app multi-gmail vault and zero-export imap statement fetcher"
-- **Last Push Timestamp:** 2026-10-14 21:10:40
+- **Last Commit:** 362b33a — "chore: add one-command launcher script for local dev"
+- **Last Push Timestamp:** 2026-10-14 21:12:42
 - **Status:** Active
 
 ## Overview
