@@ -1,5 +1,9 @@
 # AIO Wealth Hub (Personal Finance & Wealth Intelligence)
 
+- **Standalone Repository**: [https://github.com/iamabhishekt/aio-wealth-hub](https://github.com/iamabhishekt/aio-wealth-hub)
+- **Local Workspace**: `/Users/abhishek/aio-wealth-hub`
+- **Stack**: Rust (Axum, SQLite, ofxy) + Tauri v2 + React/TypeScript/Tailwind (iOS, Android, Web)
+
 ## Purpose
 A single dashboard to monitor, forecast, and optimize personal wealth across the United States and India.
 
