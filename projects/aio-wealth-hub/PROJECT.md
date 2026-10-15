@@ -4,8 +4,8 @@
 - **Local Path:** /Users/abhishek/aio-wealth-hub
 - **Tech Stack:** General / Codebase
 - **Last Active Branch:** main
-- **Last Commit:** 0ee6677 — "feat: fix Splitwise net balance calculation to +.08 and integrate Wallos engine"
-- **Last Push Timestamp:** 2026-10-15 02:11:53
+- **Last Commit:** 9f98d29 — "feat: integrate TypeSafe Jev LLM classifier and add master run_all.sh script"
+- **Last Push Timestamp:** 2026-10-15 02:14:28
 - **Status:** Active
 
 ## Overview
