@@ -4,8 +4,8 @@
 - **Local Path:** /Users/abhishek/aio-wealth-hub
 - **Tech Stack:** General / Codebase
 - **Last Active Branch:** main
-- **Last Commit:** 9f98d29 — "feat: integrate TypeSafe Jev LLM classifier and add master run_all.sh script"
-- **Last Push Timestamp:** 2026-10-15 02:14:28
+- **Last Commit:** ec63811 — "refactor: remove all mock accounts, mock subscriptions, and demo fallbacks"
+- **Last Push Timestamp:** 2026-10-15 02:19:14
 - **Status:** Active
 
 ## Overview
