@@ -76,5 +76,12 @@
 3. [x] Add multi-dimensional filter bar (Accounts, Categories, Money In / Money Out, Time Range 30d/90d/1y, Instant Search) with 1-click Reset → verify: dynamic real-time filtering
 4. [x] Add real-time aggregate statistics ribbon (Filtered Records, Inflow, Outflow, Net Flow) and responsive pagination controls → verify: `npm run build` passes in 822ms
 
+## Phase 14: Master Connectors (HDFC, Remitly, Crobo) & Skills Categorization [COMPLETED]
+1. [x] Create master sync CLI tool (`scripts/sync_connectors.py`) unifying HDFC NRI Loan, Remitly, Crobo, Wallos, SimpleFIN, and live FX rate → verify: pulls live 1 USD = 95.25 INR rate and amortizes HDFC loan
+2. [x] Re-architect `AccountsGrid.tsx` into OpenAccountant skill categories (`Assets & Liquid Reserves`, `Debts & Loans`, `Cross-Border Remittances`, `India Accounts`) → verify: separates assets from debts cleanly
+3. [x] Implement dual-currency precision for HDFC Home Loan (displays $149,666 USD with native ₹1,42,55,700 INR @ live FX rate) → verify: exact math everywhere
+4. [x] Integrate `sync_connectors.py` into master executable runner (`run_all.sh`) → verify: single command syncs feeds across all devices
+
+
 
 
