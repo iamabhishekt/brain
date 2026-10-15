@@ -4,8 +4,8 @@
 - **Local Path:** /Users/abhishek/aio-wealth-hub
 - **Tech Stack:** General / Codebase
 - **Last Active Branch:** main
-- **Last Commit:** d7b98ed — "feat(transactions): overhaul table with antislop design, human-readable account names, API-first filtering, and aggregate flow metrics"
-- **Last Push Timestamp:** 2026-10-15 02:43:10
+- **Last Commit:** 464d1aa — "feat(connectors): add master sync tool for HDFC, Remitly, Crobo, Wallos and categorize accounts by financial skills"
+- **Last Push Timestamp:** 2026-10-15 02:47:05
 - **Status:** Active
 
 ## Overview
