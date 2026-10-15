@@ -4,8 +4,8 @@
 - **Local Path:** /Users/abhishek/aio-wealth-hub
 - **Tech Stack:** General / Codebase
 - **Last Active Branch:** main
-- **Last Commit:** 9239c8e — "feat: complete SimpleFIN live account integration and Wallos subscription engine"
-- **Last Push Timestamp:** 2026-10-15 02:07:57
+- **Last Commit:** 0ee6677 — "feat: fix Splitwise net balance calculation to +.08 and integrate Wallos engine"
+- **Last Push Timestamp:** 2026-10-15 02:11:53
 - **Status:** Active
 
 ## Overview
