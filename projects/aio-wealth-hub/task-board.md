@@ -96,6 +96,15 @@
 4. [x] Build `CashflowAnalytics.tsx` (inspired by Fintrack & Twisty) with verified monthly inflow vs outflow macro bars, net retained surplus gauge, and 6-class category allocation progress bars → verify: monthly, quarterly, and annualized toggles
 5. [x] Synchronize card selection with `TransactionsTable.tsx` filter and verify full build → verify: `npm run build` succeeds in 893ms with zero type errors
 
+## Phase 17: UI Polish, Squircle Curvature & SimpleFIN Sync Audit [COMPLETED]
+1. [x] Upgrade typography to Geist & Geist Mono with tabular-nums → verify: zero number jitter and high readability
+2. [x] Eliminate sloppy cards with Double-Bezel nested architecture & concentric squircles → verify: rounded-3xl / rounded-[22px] geometry
+3. [x] Build comprehensive SimpleFIN Connection Hub with "How Sync Adjustments Work" audit → verify: liabilities sign inversion, transfer deduplication, FX normalization
 
-
-
+## Phase 18: Monarch Money Reverse Engineering & Design Elevation [COMPLETED]
+1. [x] Install skills: `anthropics/skills frontend-design`, `impeccable@4.6.0`, `Leonxlnx/taste-skill` (14 high-taste design skills) → verify: all installed globally in `~/.agents/skills/`
+2. [x] Reverse-engineer Monarch Money web app via REA Playwright capture with user cookies → verify: extracted GraphQL queries (`Common_GetCashFlowDashboard`, `DashboardWidgetBudget`, `Mobile_GetDashboardUpcomingRecurringTransactionItems`, `Common_GetTransactionsListDashboard`), headers, and token variables
+3. [x] Implement backend Merchant Cleanser & Auto-Categorization Rule Engine → verify: SQLite `merchant_rules` table, 17 default rules, and Axum endpoints (`GET/POST /api/rules`, `POST /api/rules/apply`, `DELETE /api/rules/:id`) updating 53 transactions
+4. [x] Build `MonarchDashboardBento.tsx` widget suite adhering to `high-end-visual-design` & `frontend-design` standards → verify: Cashflow & 34.6% Savings Dial, Rollover Budget Progress, Upcoming Bills Due, and Cleansed Feed
+5. [x] Integrate Clean Merchant Name editing & "Remember Rule" checkbox in `TransactionsTable.tsx` category reclassification modal → verify: live rule creation and ledger updating
+6. [x] Add "Merchant Rules & Cleanser" management tab in `CategoryHierarchyManager.tsx` → verify: rule inspection, creation, deletion, and 1-click re-application

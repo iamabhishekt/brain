@@ -18,5 +18,15 @@
       "Bash(sed *)"
     ]
   },
-  "$version": 4
+  "$version": 4,
+  "mcpServers": {
+    "rea": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "rea-agents@6.5.0",
+        "mcp"
+      ]
+    }
+  }
 }
