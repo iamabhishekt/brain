@@ -1,14 +1,8 @@
 # Task Board
 
 ## Today
-- [x] Wired global pre-push hook (`~/.config/git/hooks/pre-push` → `on-git-push.sh`)
-- [x] Built master task index: `brain/scripts/master-index.sh` → `brain/projects/TASK-INDEX.md`
-- [x] Added vibe-wise to brain project tracking (PROJECT.md, task-board, memory, scratchpad)
-- [x] Installed skills: mattpocock (8 missing), ponytail (6), ELI5, vibe-wise-learn, AAS learning subset (10), Karpathy methodology (15)
-- [x] Learning-by-default added to AGENTS.md; default-on trimmed 26 → 9 skills
-- [x] Rewrote brain README (single → multi-project) + default-skills manifest
-- [x] Scraped Karpathy X feed (100 tweets) via Apify; keychain-backed refresh script
-- [x] Demo: 75-line C Redis client (real RESP, SET/GET verified against local redis)
+- [ ] AIO Wealth Hub: Integrate on-device 1B mini-cp5 model with local RAG embeddings over cleansed SQLite ledger
+- [ ] AIO Wealth Hub: Package native mobile builds via Tauri v2 for iOS (.ipa) and Android (.apk)
 
 ## This Week
 - [ ] C/Redis learning — extend mini-redis (nil replies, TDD loop)
@@ -19,6 +13,9 @@
 
 ## Done
 - [x] Brain multi-project tracking operational; 100 projects indexed
-- [x] 165 skills installed across all agents; default-on set slimmed
-- [x] Karpathy learning source wired (skills + live X feed)
-- [x] Brain synced to GitHub (commit 9163bdb)
+- [x] Brain: Emitted & synchronized all 43 missing skills to `~/brain/.claude/skills/` and `~/brain/.agents/skills/`
+- [x] AIO Wealth Hub: Reverse-engineered Monarch Money via REA Playwright capture, extracted GraphQL queries & design tokens
+- [x] AIO Wealth Hub: Built Rust/SQLite Merchant Cleanser engine (17 rules, 53 transactions updated)
+- [x] AIO Wealth Hub: Built `MonarchDashboardBento.tsx` with Cashflow & 34.6% Savings Dial, Rollover Budget Progress, Upcoming Bills Due, and Cleansed Feed
+- [x] AIO Wealth Hub: Upgraded typography to Geist & Geist Mono with tabular-nums and squircle geometry
+- [x] AIO Wealth Hub: Built SimpleFIN connection hub with sign inversion & sync audit

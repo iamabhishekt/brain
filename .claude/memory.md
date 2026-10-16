@@ -1,9 +1,10 @@
 # Memory
 
 ## Now
-- Brain is multi-project: 25 owned repos tracked in `brain/projects/`, master index at `brain/projects/TASK-INDEX.md`. 75 forks removed from registry (tagged on GitHub, not tracked locally).
+- Brain is multi-project: 25 owned repos tracked in `brain/projects/`, master index at `brain/projects/TASK-INDEX.md`. 75 forks removed from registry.
 - Global pre-push hook wired (`~/.config/git/hooks/pre-push` → `brain/scripts/on-git-push.sh`); any iamabhishekt repo push auto-updates its brain entry.
-- Skills: 165 in `brain/.claude/skills/` (canonical) + 32 arkcli native = 197 reachable across all agents. Default-on trimmed to 9 lightweight skills (~25 KB); rest opt-in.
+- Skills: 274+ in `brain/.claude/skills/` (canonical) and symlinked into `brain/.agents/skills/` including all newly added design taste skills, openaccountant, and caveman suite.
+- aio-wealth-hub: Phase 17 & 18 completed — Monarch Money reverse-engineered via REA, 17-rule Merchant Cleanser engine live, `MonarchDashboardBento.tsx` deployed, Geist typography, squircle geometry.
 - Discovery shims wired for Claude Code, Cursor, OpenCode, Kilo Code, Trae, Gemini, Codex, CodeBuddy, Qwen, DSH — `/start` and `/wrap-up` work in all of them.
 - Karpathy X feed live at `brain/documentation/karpathy-x-feed.jsonl` (100 tweets), refreshed via `brain/scripts/fetch-karpathy.sh` (Apify token in macOS keychain).
 - Apify token stored in keychain (service `apify`, account `apify`).
