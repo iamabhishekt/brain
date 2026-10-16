@@ -75,7 +75,12 @@ detect_stack() {
 TECH_STACK="$(detect_stack)"
 PROJECT_DIR="$BRAIN_DIR/projects/$PROJECT_NAME"
 
-# 4. Register or Update in Brain
+# 4. Ensure project is attached to Universal Brain shims
+if [ ! -L "$REPO_ROOT/brain" ] || [ ! -L "$REPO_ROOT/AGENTS.md" ] || [ ! -L "$REPO_ROOT/.agents" ]; then
+  bash "$BRAIN_DIR/scripts/attach-project.sh" "$REPO_ROOT" >/dev/null 2>&1 || true
+fi
+
+# 5. Register or Update in Brain
 IS_NEW_PROJECT=false
 if [ ! -d "$PROJECT_DIR" ]; then
   IS_NEW_PROJECT=true

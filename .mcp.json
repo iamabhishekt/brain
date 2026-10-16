@@ -12,6 +12,27 @@
       "command": "/usr/bin/node",
       "args": ["/home/abhishek/.local/share/open-figma-mcp/node_modules/open-figma-mcp/server/dist/index.js"],
       "description": "Open Figma MCP plugin bridge (ws://127.0.0.1:18765/ws)"
+    },
+    "artemis": {
+      "command": "/Users/abhishek/artemis/.venv/bin/python",
+      "args": [
+        "-m",
+        "mcp_server"
+      ],
+      "env": {
+        "PYTHONUNBUFFERED": "1",
+        "PYTHONPATH": "/Users/abhishek/artemis",
+        "ARTEMIS_DESKTOP_NOTIFY": "true"
+      }
+    },
+    "rea": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "rea-agents@6.5.0",
+        "mcp"
+      ]
     }
   }
 }
+

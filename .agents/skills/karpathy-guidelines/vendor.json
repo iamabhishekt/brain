@@ -1,0 +1,43 @@
+{
+  "name": "karpathy-guidelines",
+  "installedPath": ".opencode/skills/karpathy-guidelines",
+  "source": {
+    "type": "github",
+    "repo": "multica-ai/andrej-karpathy-skills",
+    "url": "https://github.com/multica-ai/andrej-karpathy-skills",
+    "license": "NONE — no LICENSE file in repo",
+    "licenseHolder": "unknown",
+    "ideaCredit": "Andrej Karpathy — https://x.com/karpathy (observations on LLM coding pitfalls, as summarised by the upstream author)",
+    "affiliation": "third-party repo. Not affiliated with, written by, or endorsed by Karpathy. Upstream presents itself as guidance derived from his public observations."
+  },
+  "pinned": {
+    "commit": "2c606141936f1eeef17fa3043a72095b4765b9c2",
+    "commitDate": "2026-04-20T10:05:04Z",
+    "commitCountAtInstall": 28,
+    "starsAtInstall": null,
+    "installedOn": "2026-10-13"
+  },
+  "upstreamFile": "CLAUDE.md",
+  "files": {
+    "SKILL.md": "0773b167c5d81f09"
+  },
+  "localAdditions": {
+    "PROVENANCE.md": "not upstream",
+    "vendor.json": "not upstream",
+    "SKILL.md frontmatter": "YAML frontmatter prepended to the vendored CLAUDE.md so the file loads as a skill. Body below the frontmatter is byte-identical to upstream (verified by sha256 comparison)."
+  },
+  "knownDefects": [
+    {
+      "file": "SKILL.md",
+      "symbol": "upstream repository",
+      "summary": "No LICENSE file exists upstream. LICENSE and LICENSE.md both return HTTP 404, and the GitHub API reports license: null. Redistribution rights are therefore unstated — the default is exclusive copyright, so redistribution is not granted. Vendored for internal reference only; treat as do-not-redistribute until upstream adds a license.",
+      "status": "unpatched — cannot be fixed locally. Documented, not fixed."
+    },
+    {
+      "file": "SKILL.md",
+      "symbol": "principles 1-4",
+      "summary": "Substantially overlaps the Ponytail, Grill-me and Clean-code-guard modes already active in AGENTS.md, which were written independently and cover the same four behaviours. Two principles overlap only partially: 'Goal-Driven Execution' asks for a written verify step per plan item, and 'Surgical Changes' states the trace test (every changed line traces to the request) — neither is spelled out in the existing modes. Enabling both is deliberate, per user direction, not an oversight. Duplication is accepted and documented in PROVENANCE.md.",
+      "status": "documented overlap — intentional, user-directed"
+    }
+  ]
+}

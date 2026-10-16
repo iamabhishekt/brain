@@ -1,0 +1,42 @@
+{
+  "name": "make-it-click",
+  "installedPath": ".opencode/skills/make-it-click",
+  "source": {
+    "type": "github",
+    "repo": "ajithraghavan/make-it-click",
+    "url": "https://github.com/ajithraghavan/make-it-click",
+    "license": "MIT",
+    "licenseHolder": "ajithraghavan",
+    "ideaCredit": "Andrej Karpathy — https://x.com/karpathy/status/2105819303471976479",
+    "affiliation": "not affiliated with or endorsed by the idea author"
+  },
+  "pinned": {
+    "commit": "634cc638779c9c9d47d7b448a33cbe2b73660afd",
+    "commitDate": "2026-10-05T18:48:59+05:30",
+    "commitCountAtInstall": 1,
+    "starsAtInstall": 4,
+    "installedOn": "2026-10-13"
+  },
+  "upstreamSubdir": "skill/make-it-click",
+  "files": {
+    "LICENSE": "1f831ab81148e58f",
+    "SKILL.md": "9b6eae695b1b257c",
+    "references/diagrams.md": "57990672026b6eb2",
+    "references/explainer-videos.md": "7fb14eaddb758ff1",
+    "references/html-explainers.md": "c81a0f01d3a92eaf",
+    "references/ste-writing.md": "9bc391fb7806d9fa",
+    "scripts/ste_check.py": "de020c2cc2d10ef8"
+  },
+  "localAdditions": {
+    "PROVENANCE.md": "not upstream",
+    "vendor.json": "not upstream"
+  },
+  "knownDefects": [
+    {
+      "file": "scripts/ste_check.py",
+      "symbol": "PASSIVE",
+      "summary": "Passive voice with an intervening adverb is missed. The regex requires the participle immediately after the auxiliary, so 'was not cleaned', 'is being processed' and 'has already been sent' pass silently.",
+      "status": "unpatched — documented, not fixed. Do not treat the linter as a gate."
+    }
+  ]
+}

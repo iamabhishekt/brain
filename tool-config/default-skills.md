@@ -13,7 +13,7 @@ message**. The default-on set is therefore deliberately small — only the highe
 broadly-useful learning skills. Everything else is installed and available but **opt-in**:
 say "load X" to bring it in for a session.
 
-## Always-on (9 skills, ~25 KB total)
+## Always-on Core Skills (Default on for every agent)
 
 | Skill | Category | One-line |
 |---|---|---|
@@ -30,6 +30,14 @@ say "load X" to bring it in for a session.
 | `clean-code-guard` | engineering | Guard-pass on generated/changed code blocks |
 | `karpathy-guidelines` | engineering | Karpathy 4 checks on code change + execution loop |
 | `make-it-click` | communication | Explanations using the Make-It-Click ladder |
+| `design-taste-frontend` | frontend / taste | Anti-slop frontend art direction, researched visual designs, and look-and-fix loops |
+| `impeccable` | frontend / quality | Design quality engine, anti-pattern detection, design systems & micro-interactions |
+| `frontend-design` | frontend / ux | Production-grade UI design, intentional typography, layout & spacing |
+| `anti-ui-slop` | frontend / design | Stop shipping generic UI, real screens reference, strict design contract |
+| `reverse-engineer-anything` | engineering / REA | Reverse engineer web/mobile/native targets, decompile bundles, extract live schemas |
+| `brandkit` | design / branding | High-end brand guidelines, logo systems, and visual decks |
+| `high-end-visual-design` | frontend / design | Agency-grade visual polish, typography hierarchy, double-bezel card geometry |
+
 
 ## Opt-in (installed, load on demand)
 
